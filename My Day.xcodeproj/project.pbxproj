@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		629614751B19F6930010A60F /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629614741B19F6930010A60F /* WeatherViewController.swift */; };
 		62C131351B19E4BE00BC9713 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C131321B19E4BE00BC9713 /* HomeViewController.swift */; };
 		62C131361B19E4BE00BC9713 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C131331B19E4BE00BC9713 /* LeftViewController.swift */; };
 		62C131371B19E4BE00BC9713 /* OtherPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C131341B19E4BE00BC9713 /* OtherPageViewController.swift */; };
@@ -19,6 +20,9 @@
 		62D2D9231B19D5A6001CBCD4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62D2D9221B19D5A6001CBCD4 /* Images.xcassets */; };
 		62D2D9261B19D5A6001CBCD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62D2D9241B19D5A6001CBCD4 /* LaunchScreen.xib */; };
 		62D2D9321B19D5A6001CBCD4 /* My_DayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D2D9311B19D5A6001CBCD4 /* My_DayTests.swift */; };
+		62ED137F1B1C5AF700CCF4DD /* AddTodoItemUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ED137C1B1C5AF700CCF4DD /* AddTodoItemUIViewController.swift */; };
+		62ED13801B1C5AF700CCF4DD /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ED137D1B1C5AF700CCF4DD /* TodoModel.swift */; };
+		62ED13811B1C5AF700CCF4DD /* TodoUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62ED137E1B1C5AF700CCF4DD /* TodoUIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		629614741B19F6930010A60F /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		629614771B1A26BF0010A60F /* testURL.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testURL.playground; sourceTree = "<group>"; };
 		62C131321B19E4BE00BC9713 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		62C131331B19E4BE00BC9713 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		62C131341B19E4BE00BC9713 /* OtherPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherPageViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +54,9 @@
 		62D2D92B1B19D5A6001CBCD4 /* My DayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My DayTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62D2D9301B19D5A6001CBCD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62D2D9311B19D5A6001CBCD4 /* My_DayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_DayTests.swift; sourceTree = "<group>"; };
+		62ED137C1B1C5AF700CCF4DD /* AddTodoItemUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTodoItemUIViewController.swift; sourceTree = "<group>"; };
+		62ED137D1B1C5AF700CCF4DD /* TodoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		62ED137E1B1C5AF700CCF4DD /* TodoUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoUIViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		629614731B19F67C0010A60F /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				629614741B19F6930010A60F /* WeatherViewController.swift */,
+			);
+			name = Weather;
+			sourceTree = "<group>";
+		};
 		62D2D90A1B19D5A5001CBCD4 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +106,8 @@
 		62D2D9151B19D5A5001CBCD4 /* My Day */ = {
 			isa = PBXGroup;
 			children = (
+				62ED137B1B1C5AB500CCF4DD /* Todo */,
+				629614731B19F67C0010A60F /* Weather */,
 				62C1313A1B19E4E200BC9713 /* SwiftColors.swift */,
 				62D2D9181B19D5A5001CBCD4 /* AppDelegate.swift */,
 				62D2D91D1B19D5A5001CBCD4 /* ViewController.swift */,
@@ -96,6 +115,7 @@
 				62C131331B19E4BE00BC9713 /* LeftViewController.swift */,
 				62C131341B19E4BE00BC9713 /* OtherPageViewController.swift */,
 				62C131381B19E4D700BC9713 /* Main.storyboard */,
+				629614771B1A26BF0010A60F /* testURL.playground */,
 				62D2D9221B19D5A6001CBCD4 /* Images.xcassets */,
 				62D2D9241B19D5A6001CBCD4 /* LaunchScreen.xib */,
 				62D2D91A1B19D5A5001CBCD4 /* My_Day.xcdatamodeld */,
@@ -128,6 +148,16 @@
 				62D2D9301B19D5A6001CBCD4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		62ED137B1B1C5AB500CCF4DD /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				62ED137C1B1C5AF700CCF4DD /* AddTodoItemUIViewController.swift */,
+				62ED137D1B1C5AF700CCF4DD /* TodoModel.swift */,
+				62ED137E1B1C5AF700CCF4DD /* TodoUIViewController.swift */,
+			);
+			name = Todo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +261,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				62C1313D1B19E7D200BC9713 /* Common.swift in Sources */,
+				62ED137F1B1C5AF700CCF4DD /* AddTodoItemUIViewController.swift in Sources */,
+				629614751B19F6930010A60F /* WeatherViewController.swift in Sources */,
+				62ED13801B1C5AF700CCF4DD /* TodoModel.swift in Sources */,
+				62ED13811B1C5AF700CCF4DD /* TodoUIViewController.swift in Sources */,
 				62C1313B1B19E4E200BC9713 /* SwiftColors.swift in Sources */,
 				62C131371B19E4BE00BC9713 /* OtherPageViewController.swift in Sources */,
 				62D2D91E1B19D5A5001CBCD4 /* ViewController.swift in Sources */,
