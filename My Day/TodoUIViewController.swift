@@ -20,7 +20,7 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         //load userDefault
         var customerDefault = NSUserDefaults.standardUserDefaults()
         
-        //weather first time create todo list
+        //weather first time create todo list  判断第一次启动
         if let list = customerDefault.objectForKey("Todo") as? [NSData]{
             //already have a todo list in user default, get the todoList
             todoList = list
@@ -32,7 +32,8 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         
         //add navigation item
         
-        navigationItem.leftBarButtonItem = editButtonItem()
+//        navigationItem.leftBarButtonItem = editButtonItem()
+
 
     }
 
@@ -83,6 +84,7 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         return editing
     }
     
+//    上下调整
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         let currentDefault = NSUserDefaults.standardUserDefaults()
         if let list = currentDefault.objectForKey("Todo") as? [NSData]{
@@ -100,6 +102,8 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         return true
     }
     
+    
+//    左滑动删除
     //MARK - UITableViewDelegate
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
@@ -122,12 +126,14 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.setEditing(editing, animated: animated)
     }
     
+//    确定返回
     //unwind
     @IBAction func close(segue: UIStoryboardSegue){
         self.tableView.reloadData()
         viewDidLoad()
     }
     
+//    每一项点击之后可编辑
     //editSegue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editTodo"{

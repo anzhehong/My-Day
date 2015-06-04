@@ -14,6 +14,7 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var itemType: UITextField!
     @IBOutlet weak var itemDate: UIDatePicker!
     
+//    不为空是编辑，为空是新增
     var currentTodoItem: TodoModel?
     var currentIndex: Int?
     
@@ -46,12 +47,14 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
     }
     
     //close the keyboard
+//    return关掉
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
     //close the keyboard
+//    空白关掉
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         itemType.resignFirstResponder()
         itemTitle.resignFirstResponder()
@@ -59,10 +62,13 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
     
     
     //create action
+//    确定按钮操作
     @IBAction func createDidClicked(sender: AnyObject) {
         
         let uuid = NSUUID().UUIDString
+        println(uuid)
         
+//        根据当前时区取
         let locale = NSLocale.currentLocale()
         let dateFormat = NSDateFormatter.dateFormatFromTemplate("yyyy/MM/dd", options: 0, locale: locale)
         let dateFormmatter = NSDateFormatter()
@@ -75,6 +81,7 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
         let currentDefault = NSUserDefaults.standardUserDefaults()
         
         
+//        新建
         if currentTodoItem == nil{
             
             //create todo item
@@ -92,8 +99,9 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
                 currentDefault.setObject(todoList, forKey: "Todo")
                 
             }
-            
-        }else{
+        }
+//        编辑
+        else{
             
             //edit todo item
             if let list = currentDefault.valueForKey("Todo") as? [NSData] {
@@ -108,7 +116,6 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
     
                 
                 currentDefault.setObject(todoList, forKey: "Todo")
-                
             }
         }
         

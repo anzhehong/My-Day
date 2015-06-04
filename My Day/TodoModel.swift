@@ -18,12 +18,6 @@ class TodoModel: NSObject, NSCoding {
     override init() {
         
     }
-//    init(id: String, title: String, type: String, date: String) {
-//        self.id = id
-//        self.title = title
-//        self.type = type
-//        self.date = date
-//    }
     
     required init(coder aDecoder: NSCoder) {
         self.id = aDecoder.decodeObjectForKey("id") as? String
@@ -52,17 +46,6 @@ class TodoModel: NSObject, NSCoding {
         }
     }
     
-    func populateTodo() {
-        self.id = "1"
-        self.title = "HelloWorld"
-        self.type = "Test"
-        self.date = "2015-05-31"
-    }
-    
-    func save(){
-        let data = NSKeyedArchiver.archivedDataWithRootObject(self)
-        NSUserDefaults.standardUserDefaults().setObject(data, forKey: "Todo")
-    }
     
     func todoToNSData()-> NSData?{
         return NSKeyedArchiver.archivedDataWithRootObject(self)
@@ -70,16 +53,5 @@ class TodoModel: NSObject, NSCoding {
     
     class func NSDataToTodo(data: NSData)-> TodoModel{
         return NSKeyedUnarchiver.unarchiveObjectWithData(data) as TodoModel
-    }
-    
-    func clear() {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("Todo")
-    }
-    
-    class func loadSaved() -> TodoModel? {
-        if let data = NSUserDefaults.standardUserDefaults().objectForKey("Todo") as? NSData {
-            return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? TodoModel
-        }
-        return nil
     }
 }
