@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     var titleOfOtherPages = ""
 
     @IBOutlet var panGesture: UIPanGestureRecognizer!
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,14 +24,15 @@ class HomeViewController: UIViewController {
 //        segmentView.setWidth(60, forSegmentAtIndex: 1)
 //        self.navigationItem.titleView = segmentView
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainView")!)
+        
+        
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
     
     // MARK: - Navigation
 
@@ -42,6 +44,4 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    
-
 }

@@ -60,15 +60,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.textLabel!.text = titlesDictionary[indexPath.row]
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    
 
 }

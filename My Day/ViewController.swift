@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     var homeNavigationController: UINavigationController!
     var homeViewController: HomeViewController!
@@ -65,17 +65,37 @@ class ViewController: UIViewController {
         // 绑定 UIPanGestureRecognizer
         let panGesture = homeViewController.panGesture
         panGesture.addTarget(self, action: Selector("pan:"))
+        panGesture.delegate = self
         mainView.addGestureRecognizer(panGesture)
         
         // 绑定单击收起菜单
-        let tapGesture = UITapGestureRecognizer(target: self, action: "showHome")
+//        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("tap:"))
+        let tapGesture = homeViewController.tapGesture
+        tapGesture.addTarget(self, action: Selector("tap:"))
+        tapGesture.delegate = self
         mainView.addGestureRecognizer(tapGesture)
         
+        
     }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+//        println(NSStringFromClass(touch.view.classForKeyedArchiver))
+        if touch.view == homeViewController.view{
+            return true
+        }
+        return false
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // 响应 UITapGestureRecognizer事件
+    func tap(recognizer: UITapGestureRecognizer)
+    {
+        self.showHome()
     }
     
     // 响应 UIPanGestureRecognizer 事件
@@ -118,6 +138,7 @@ class ViewController: UIViewController {
         leftViewController.view.center = CGPointMake(centerOfLeftViewAtBeginning.x + distanceOfLeftView * trueProportion, centerOfLeftViewAtBeginning.y - (proportionOfLeftView - 1) * leftViewController.view.frame.height * trueProportion / 2 )
         leftViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, pro, pro)
     }
+
     
     // 封装三个方法，便于后期调用
     

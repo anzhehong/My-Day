@@ -8,45 +8,61 @@
 
 import UIKit
 
-class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
 
-//    var courses : Dictionary<String, String> = ["math":"A101", "english":"b202"]
-//    var courses =  [CourseInfoModel]()
-//    var course1 = [CourseInfoModel]
-//    course1.courseName = "高等数学"
-//    course1.coursePlace = "A101"
-//    courses.append(courses1)
-    
-    
+
+    var coursesDic = [CourseInfoModel]()
+    var screenBounds = UIScreen.mainScreen().applicationFrame
     @IBOutlet weak var courseCollectionView: UICollectionView!
+    
+    func initCoursesDic()
+    {
+        for i in 0...34
+        {
+            var tempCourse = CourseInfoModel()
+            coursesDic.append(tempCourse)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         courseCollectionView.delegate = self
         courseCollectionView.dataSource = self
-        // Do any additional setup after loading the view.
+        self.initCoursesDic()
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return 21
-    }
+    
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         var cell = courseCollectionView.dequeueReusableCellWithReuseIdentifier("courseCell", forIndexPath: indexPath) as UICollectionViewCell
         var courseNameView = cell.viewWithTag(1) as UILabel
-        courseNameView.text = "ddd"
+        courseNameView.text = coursesDic[indexPath.row].courseName
+        var coursePlaceView = cell.viewWithTag(2) as UILabel
+        coursePlaceView.text = coursesDic[indexPath.row].coursPlace
         return cell
     }
     
-    var screenBounds = UIScreen.mainScreen().applicationFrame
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
+        println("\(indexPath.row)")
+    }
+    
+    
+    //collectionView appearance
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return coursesDic.count
+    }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     {

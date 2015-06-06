@@ -24,8 +24,8 @@ class OtherPageViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = backButton
         
         // 弥补因为返回按钮被替换导致的边缘滑入手势失效的问题
-        let gesture = UIPanGestureRecognizer(target: self, action: "goBack")
-        self.view.addGestureRecognizer(gesture)
+//        let gesture = UIPanGestureRecognizer(target: self, action: "goBack")
+//        self.view.addGestureRecognizer(gesture)
     }
 
     override func didReceiveMemoryWarning() {

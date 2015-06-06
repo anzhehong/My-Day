@@ -55,11 +55,15 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
     
     //close the keyboard
 //    空白关掉
+//    override func  touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+//        itemType.resignFirstResponder()
+//        itemTitle.resignFirstResponder()
+//    }
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         itemType.resignFirstResponder()
         itemTitle.resignFirstResponder()
     }
-    
+//
     
     //create action
 //    确定按钮操作

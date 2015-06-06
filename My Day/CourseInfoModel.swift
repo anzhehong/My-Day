@@ -9,29 +9,27 @@
 import UIKit
 
 class CourseInfoModel: NSObject,NSCoding {
-    var courseName : String?
-    var coursPlace : String?
+    var courseName : String
+    var coursPlace : String
+    var isTaken :Bool
     
     override init(){
-        
+        self.courseName = ""
+        self.coursPlace = ""
+        self.isTaken = false
     }
     
     required init(coder aDecoder: NSCoder) {
-        self.courseName = aDecoder.decodeObjectForKey("courseName") as? String
-        self.coursPlace = aDecoder.decodeObjectForKey("coursPlace") as? String
-        
+        self.courseName = aDecoder.decodeObjectForKey("courseName") as String
+        self.coursPlace = aDecoder.decodeObjectForKey("coursPlace") as String
+        self.isTaken = aDecoder.decodeObjectForKey("isTaken")as Bool
     }
     
     //在这个方法里指定如何归档对象中的每个实例变量，可以使用encodeObject:forKey方法归档实例变量
     func encodeWithCoder(aCoder: NSCoder) {
-        
-        if let courseName  = self.courseName{
-            aCoder.encodeObject(courseName, forKey: "courseName")
-        }
-        
-        if let coursePlace = self.coursPlace {
-            aCoder.encodeObject(coursePlace, forKey: "coursePlace")
-        }
+        aCoder.encodeObject(courseName, forKey: "courseName")
+        aCoder.encodeObject(coursPlace, forKey: "coursePlace")
+        aCoder.encodeObject(isTaken,forKey:"isTaken")
     }
     
     
