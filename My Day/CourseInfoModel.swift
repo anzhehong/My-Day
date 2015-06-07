@@ -28,16 +28,16 @@ class CourseInfoModel: NSObject,NSCoding {
     //在这个方法里指定如何归档对象中的每个实例变量，可以使用encodeObject:forKey方法归档实例变量
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(courseName, forKey: "courseName")
-        aCoder.encodeObject(coursPlace, forKey: "coursePlace")
+        aCoder.encodeObject(coursPlace, forKey: "coursPlace")
         aCoder.encodeObject(isTaken,forKey:"isTaken")
     }
     
     
-    func todoToNSData()-> NSData?{
+    func courseToNSData()-> NSData?{
         return NSKeyedArchiver.archivedDataWithRootObject(self)
     }
     
-    class func NSDataToTodo(data: NSData)-> CourseInfoModel{
+    class func NSDataToCourse(data: NSData)-> CourseInfoModel{
         return NSKeyedUnarchiver.unarchiveObjectWithData(data) as CourseInfoModel
     }
 

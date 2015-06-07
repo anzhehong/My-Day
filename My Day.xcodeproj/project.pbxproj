@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D7679A31B23E12B00F49A5A /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7679A21B23E12B00F49A5A /* AddCourseViewController.swift */; };
+		4D7679A51B23EDF800F49A5A /* CreateCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7679A41B23EDF800F49A5A /* CreateCourseViewController.swift */; };
 		629614751B19F6930010A60F /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629614741B19F6930010A60F /* WeatherViewController.swift */; };
 		62B43CE01B20588D00A42DAF /* WholeWeekCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43CDF1B20588D00A42DAF /* WholeWeekCourseViewController.swift */; };
 		62C131351B19E4BE00BC9713 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C131321B19E4BE00BC9713 /* HomeViewController.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D7679A21B23E12B00F49A5A /* AddCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		4D7679A41B23EDF800F49A5A /* CreateCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCourseViewController.swift; sourceTree = "<group>"; };
 		629614741B19F6930010A60F /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		629614771B1A26BF0010A60F /* testURL.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testURL.playground; sourceTree = "<group>"; };
 		62B43CDF1B20588D00A42DAF /* WholeWeekCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WholeWeekCourseViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 			children = (
 				62B43CDF1B20588D00A42DAF /* WholeWeekCourseViewController.swift */,
 				62CBD58E1B20B68C004BC88E /* CourseInfoModel.swift */,
+				4D7679A21B23E12B00F49A5A /* AddCourseViewController.swift */,
+				4D7679A41B23EDF800F49A5A /* CreateCourseViewController.swift */,
 			);
 			name = Course;
 			sourceTree = "<group>";
@@ -274,11 +280,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D7679A31B23E12B00F49A5A /* AddCourseViewController.swift in Sources */,
 				62CBD58F1B20B68C004BC88E /* CourseInfoModel.swift in Sources */,
 				62C1313D1B19E7D200BC9713 /* Common.swift in Sources */,
 				62B43CE01B20588D00A42DAF /* WholeWeekCourseViewController.swift in Sources */,
 				62ED137F1B1C5AF700CCF4DD /* AddTodoItemUIViewController.swift in Sources */,
 				629614751B19F6930010A60F /* WeatherViewController.swift in Sources */,
+				4D7679A51B23EDF800F49A5A /* CreateCourseViewController.swift in Sources */,
 				62ED13801B1C5AF700CCF4DD /* TodoModel.swift in Sources */,
 				62ED13811B1C5AF700CCF4DD /* TodoUIViewController.swift in Sources */,
 				62C1313B1B19E4E200BC9713 /* SwiftColors.swift in Sources */,
