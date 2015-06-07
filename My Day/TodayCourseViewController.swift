@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TodayCourseViewController: UIViewController, UITableViewDataSource {
+class TodayCourseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,9 +19,22 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.reloadData()
+        println("will didload")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         
+        super.viewWillAppear(animated)
+        amCourseNum = 0;
+        pmCourseNum = 0;
+        todayCourse = [CourseInfoModel]()
         let userDefault = NSUserDefaults.standardUserDefaults()
+        //        userDefault.removeObjectForKey("course")
         if let list = userDefault.objectForKey("course") as? [NSData] {
+            
             //Get today date
             let date = NSDate()
             let weekInt = date.dayOfWeek()
@@ -64,9 +77,10 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource {
         if pmCourseNum == 0 {
             pmCourseNum = 1
         }
-
-        
+        tableView.reloadData()
+        println("willappear")
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,6 +92,12 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        return self.loadData(tableView, cellForRowAtIndexPath: indexPath)
+        
+    }
+    
+    func loadData(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell
+    {
         let timeCell = tableView.dequeueReusableCellWithIdentifier("TimeCell") as UITableViewCell
         let courseCell = tableView.dequeueReusableCellWithIdentifier("CourseCell") as UITableViewCell
         let noCourseCell = tableView.dequeueReusableCellWithIdentifier("NoCourseCell") as UITableViewCell
@@ -86,14 +106,14 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource {
         var date = NSDate().dayOfWeek()
         var dateStr = ""
         switch date{
-            case 0: dateStr = "星期日"
-            case 1: dateStr = "星期一 "
-            case 2: dateStr = "星期二"
-            case 3: dateStr = "星期三"
-            case 4: dateStr = "星期四"
-            case 5: dateStr = "星期五"
-            case 6: dateStr = "星期六"
-            default: dateStr = "星期八"
+        case 0: dateStr = "星期日"
+        case 1: dateStr = "星期一 "
+        case 2: dateStr = "星期二"
+        case 3: dateStr = "星期三"
+        case 4: dateStr = "星期四"
+        case 5: dateStr = "星期五"
+        case 6: dateStr = "星期六"
+        default: dateStr = "星期八"
         }
         
         if indexPath.row == 0 {

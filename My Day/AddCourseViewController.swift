@@ -38,7 +38,7 @@ class AddCourseViewController: UIViewController {
         var myCourse = CourseInfoModel()
         myCourse.coursPlace = coursePlace.text
         myCourse.courseName = courseName.text
-        if courseName.text != "" && coursePlace.text != "" {
+        if courseName.text != "" || coursePlace.text != "" {
             myCourse.isTaken = true
         }else{
             myCourse.isTaken = false
