@@ -57,24 +57,17 @@ class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         var cell = courseCollectionView.dequeueReusableCellWithReuseIdentifier("courseCell", forIndexPath: indexPath) as UICollectionViewCell
-//        println(CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).isTaken)
-        println(CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).isTaken)
-        if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).isTaken == false
-        {
-            if indexPath.row == 13{
-                        println(indexPath.row)
-                        println(CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).isTaken)
-
-            }
+        
+        if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).isTaken == false{
             cell.backgroundColor = UIColor.grayColor()
+        }else{
+            cell.backgroundColor = UIColor.orangeColor()
         }
 
         var courseNameView = cell.viewWithTag(1) as UILabel
         courseNameView.text = CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).courseName
         var coursePlaceView = cell.viewWithTag(2) as UILabel
         coursePlaceView.text = CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace
-//        println(indexPath.row)
-//        println(CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).isTaken)
         return cell
     }
     

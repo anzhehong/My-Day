@@ -22,7 +22,6 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.dataSource = self
         tableView.delegate = self
         tableView.reloadData()
-        println("will didload")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -78,7 +77,6 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
             pmCourseNum = 1
         }
         tableView.reloadData()
-        println("willappear")
     }
     
 
