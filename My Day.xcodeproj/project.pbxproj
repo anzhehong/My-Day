@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D28C3971B240C300064666A /* TodayCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D28C3961B240C300064666A /* TodayCourseViewController.swift */; };
 		4D7679A31B23E12B00F49A5A /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7679A21B23E12B00F49A5A /* AddCourseViewController.swift */; };
 		4D7679A51B23EDF800F49A5A /* CreateCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7679A41B23EDF800F49A5A /* CreateCourseViewController.swift */; };
 		629614751B19F6930010A60F /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629614741B19F6930010A60F /* WeatherViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D28C3961B240C300064666A /* TodayCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayCourseViewController.swift; sourceTree = "<group>"; };
 		4D7679A21B23E12B00F49A5A /* AddCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
 		4D7679A41B23EDF800F49A5A /* CreateCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCourseViewController.swift; sourceTree = "<group>"; };
 		629614741B19F6930010A60F /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				62CBD58E1B20B68C004BC88E /* CourseInfoModel.swift */,
 				4D7679A21B23E12B00F49A5A /* AddCourseViewController.swift */,
 				4D7679A41B23EDF800F49A5A /* CreateCourseViewController.swift */,
+				4D28C3961B240C300064666A /* TodayCourseViewController.swift */,
 			);
 			name = Course;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				62C1313D1B19E7D200BC9713 /* Common.swift in Sources */,
 				62B43CE01B20588D00A42DAF /* WholeWeekCourseViewController.swift in Sources */,
 				62ED137F1B1C5AF700CCF4DD /* AddTodoItemUIViewController.swift in Sources */,
+				4D28C3971B240C300064666A /* TodayCourseViewController.swift in Sources */,
 				629614751B19F6930010A60F /* WeatherViewController.swift in Sources */,
 				4D7679A51B23EDF800F49A5A /* CreateCourseViewController.swift in Sources */,
 				62ED13801B1C5AF700CCF4DD /* TodoModel.swift in Sources */,
