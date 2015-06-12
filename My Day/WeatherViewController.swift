@@ -9,29 +9,103 @@
 import UIKit
 
 class WeatherViewController: UIViewController {
+    
+//    今日
+    @IBOutlet weak var placeLabel: UILabel!
+    
+    @IBOutlet weak var currentTemperatureLabel: UILabel!
+    
+    @IBOutlet weak var currentDayLabel: UILabel!
+    
+    @IBOutlet weak var todayWeatherImage: UIImageView!
+    
+    @IBOutlet weak var todayWeather: UILabel!
+    
+    @IBOutlet weak var todayHighTempLabel: UILabel!
+    
+    @IBOutlet weak var todayLowTempLabel: UILabel!
+    
+    @IBOutlet weak var currentHumidityLabel: UILabel!
+    
+    @IBOutlet weak var windTodayLabel: UILabel!
+    
+    @IBOutlet weak var winpTodayLabel: UILabel!
+    
+//    未来三天
+    @IBOutlet weak var tomorrowWeekLabel: UILabel!
+    @IBOutlet weak var tomorrowTemLabel: UILabel!
+    @IBOutlet weak var tomorrowWeatherImg: UIImageView!
+    
+    @IBOutlet weak var tomorrow2WeekLabel: UILabel!
+    @IBOutlet weak var tomorrow2TemLabel: UILabel!
+    @IBOutlet weak var tomorrow2WeatherImg: UIImageView!
+    
+    @IBOutlet weak var tomorrow3WeekLabel: UILabel!
+    @IBOutlet weak var tomorrow3TemLabel: UILabel!
+    @IBOutlet weak var tomorrow3WeatherImg: UIImageView!
+    
+    
+    func weatherImgConfig(imgView:UIImageView,weather:String)
+    {
+        if weather == "晴" {
+            imgView.image = UIImage(named: "sunny")
+        }else if weather == "晴转多云" {
+            imgView.image = UIImage(named: "cloudy")
+        }else if weather.componentsSeparatedByString("雨").count > 1  {
+            imgView.image = UIImage(named: "rain")
+        }else if weather.componentsSeparatedByString("雪").count > 1 {
+            imgView.image = UIImage(named: "snow")
+        }else if weather.componentsSeparatedByString("云").count > 1 {
+            imgView.image = UIImage(named: "fog")
+        }
+        else {
+            imgView.image = UIImage(named: "wind")
+        }
+    }
+    
+    
+    func changeTodayWeather(cityName:AnyObject,week:AnyObject,
+        temperatureCurr:AnyObject, days:AnyObject,
+        temperatureHigh:AnyObject,temperatureLow:AnyObject,
+        humidity:AnyObject,humidityHigh:AnyObject,
+        humidityLow:AnyObject,weatherToday:AnyObject,
+        wind:AnyObject, winp:AnyObject,weatherImgView:UIImageView) {
+            placeLabel.text  = cityName as? String
+            
+            var dayToday = NSDate()
+            var dayTodayFormatter = NSDateFormatter()
+            dayTodayFormatter.dateFormat = "MM月dd日"
+            var dayTodayStr = dayTodayFormatter.stringFromDate(dayToday)
+            currentDayLabel.text = dayTodayStr
+            currentTemperatureLabel.text = temperatureCurr as? String
+            todayHighTempLabel.text = temperatureHigh as? String
+            todayLowTempLabel.text = temperatureLow as? String
+            
+            currentHumidityLabel.text = humidity as? String
+            windTodayLabel.text = "实时风向  \(wind)"
+            
+            winpTodayLabel.text = winp as? String
+            todayWeather.text = weatherToday as? String
+            self.weatherImgConfig(weatherImgView, weather: weatherToday as String)
+            
+    }
 
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadTodayWeather()
+        self.loadFuture3DayWeather()
         // Do any additional setup after loading the view.
     }
 
-    @IBOutlet var weatherTextView: UITextView!
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func loadToday(sender: AnyObject) {
-        self.loadTodayWeather()
-    }
-    
-    @IBAction func loadFuture3(sender: AnyObject) {
-        self.loadFuture3DayWeather()
-    }
-
-    
-    func loadWeather(){
-    }
     
     func loadTodayWeather(){
         //今日天气
@@ -51,38 +125,51 @@ class WeatherViewController: UIViewController {
         var temp_highToday:AnyObject! = resultToday.objectForKey("temp_high")
         var temp_lowToday:AnyObject! = resultToday.objectForKey("temp_low")
         //今日湿度
-        var humidityTodat:AnyObject! = resultToday.objectForKey("humidity")
-        var humi_currToday:AnyObject! = resultToday.objectForKey("temp_curr")
+        var humidityToday:AnyObject! = resultToday.objectForKey("humidity")
         var humi_lowToday:AnyObject! = resultToday.objectForKey("humi_low")
         var humi_highToday:AnyObject! = resultToday.objectForKey("humi_high")
         //今日风向风速
         var windToday:AnyObject! = resultToday.objectForKey("wind")
         var winpToday:AnyObject! = resultToday.objectForKey("winp")
         
-        changeTextView(daysToday, week: weekToday, cityName: citynm, weather: weekToday, temperature: temperatureToday, temperatureHigh: temp_highToday, temperatureLow: temp_lowToday, humidity: humidityTodat, humidityHigh: humi_highToday, humidityLow: humi_lowToday, wind: windToday, winp: winpToday)
+        //显示今日天气
+        changeTodayWeather(citynm, week: weekToday, temperatureCurr: temperature_currToday, days: daysToday, temperatureHigh: temp_highToday, temperatureLow: temp_lowToday, humidity: humidityToday, humidityHigh: humi_highToday, humidityLow: humi_lowToday, weatherToday: weatherToday, wind: windToday, winp: winpToday, weatherImgView: todayWeatherImage)
 
         
     }
     
-    func changeTextView(days:AnyObject, week:AnyObject,
-        cityName:AnyObject, weather:AnyObject,
-        temperature:AnyObject, temperatureHigh:AnyObject,
-        temperatureLow:AnyObject, humidity:AnyObject,
-        humidityHigh:AnyObject,humidityLow:AnyObject,
-        wind:AnyObject, winp:AnyObject) {
+    
+    func changeFuture3Weather(week1:AnyObject,week2:AnyObject,
+        week3:AnyObject,temp1:AnyObject,
+        temp2:AnyObject,temp3:AnyObject,
+        weather1:AnyObject,weather2:AnyObject,
+        weather3:AnyObject,
+        imgView1:UIImageView,
+        imgView2:UIImageView,
+        imgView3:UIImageView) {
+            tomorrowWeekLabel.text = week1 as?String
+            tomorrow2WeekLabel.text = week2 as?String
+            tomorrow3WeekLabel.text = week3 as?String
+            tomorrowTemLabel.text = temp1 as?String
+            tomorrow2TemLabel.text = temp2 as?String
+            tomorrow3TemLabel.text = temp3 as?String
+            
+            self.weatherImgConfig(imgView1, weather: weather1 as String)
+            self.weatherImgConfig(imgView2, weather: weather2 as String)
+            self.weatherImgConfig(imgView3, weather: weather3 as String)
+            
         
-        weatherTextView.text = "days:\(days)\nweek:\(week)\ntemperature:\(temperature)\n最高温度：\(temperatureHigh)\n最低温度：\(temperatureLow)\n湿度：\(humidity)"
     }
     
+    
     func loadFuture3DayWeather(){
-        
+    
         //未来三天
         var url = NSURL(string: "http://api.k780.com:88/?app=weather.future&weaid=38&&appkey=14248&sign=8f3a3981badca2bc2c0a8193f259f916&format=json")
         var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
-        
         var json: AnyObject! = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments, error: nil)
-        
         var result: NSArray! = json.objectForKey("result") as NSArray
+        
         
         //第一天
         
@@ -104,6 +191,8 @@ class WeatherViewController: UIViewController {
         var wind1: AnyObject! = result[0].objectForKey("wind")
         //风力
         var winp1: AnyObject! = result[0].objectForKey("winp")
+        var weather1: AnyObject! = result[0].objectForKey("weather")
+        
         
         //第二天
         
@@ -125,7 +214,8 @@ class WeatherViewController: UIViewController {
         var wind2: AnyObject! = result[1].objectForKey("wind")
         //风力
         var winp2: AnyObject! = result[1].objectForKey("winp")
-        
+        var weather2: AnyObject! = result[1].objectForKey("weather")
+    
         
         //第三天
         
@@ -147,6 +237,10 @@ class WeatherViewController: UIViewController {
         var wind3: AnyObject! = result[2].objectForKey("wind")
         //风力
         var winp3: AnyObject! = result[2].objectForKey("winp")
+        var weather3: AnyObject! = result[2].objectForKey("weather")
+        
+        
+        changeFuture3Weather(week1, week2: week2, week3: week3, temp1: temperature1, temp2: temperature2, temp3: temperature3, weather1:weather1 , weather2: weather2, weather3: weather3, imgView1: tomorrowWeatherImg, imgView2: tomorrow2WeatherImg, imgView3: tomorrow3WeatherImg)
     }
-    
+
 }
