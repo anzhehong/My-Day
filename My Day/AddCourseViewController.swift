@@ -9,6 +9,9 @@
 import UIKit
 
 class AddCourseViewController: UIViewController {
+    
+    @IBOutlet var backgroundView: UIView!
+    
 
     @IBOutlet weak var courseName: UITextField!
     @IBOutlet weak var courseTime: UITextField!
@@ -26,6 +29,20 @@ class AddCourseViewController: UIViewController {
         courseTime.text = getCourseTime(weekPos, classPos: classPos)
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.Default
+        nav?.tintColor = UIColor.whiteColor()
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.brownColor()]
+        nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
+        nav?.hidden = false
+
+        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+    
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

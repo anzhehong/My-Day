@@ -28,6 +28,15 @@ class HomeViewController: UIViewController {
         
 
     }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        var nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.Default
+//        nav?.tintColor = UIColor.redColor()
+//        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orangeColor()]
+        nav?.hidden = true
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

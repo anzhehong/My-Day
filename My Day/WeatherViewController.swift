@@ -10,6 +10,8 @@ import UIKit
 
 class WeatherViewController: UIViewController {
     
+    @IBOutlet weak var backgroudImg: UIImageView!
+    
 //    今日
     @IBOutlet weak var placeLabel: UILabel!
     
@@ -63,6 +65,22 @@ class WeatherViewController: UIViewController {
         }
     }
     
+    func backgroundImgConfig(weather:String) {
+        if weather == "晴" {
+            backgroudImg.image = UIImage(named: "sunnyDay")
+        }else if weather == "晴转多云" {
+            backgroudImg.image = UIImage(named: "cloudyDay")
+        }else if weather.componentsSeparatedByString("雨").count > 1  {
+            backgroudImg.image = UIImage(named: "rainyDay")
+        }else if weather.componentsSeparatedByString("雪").count > 1 {
+            backgroudImg.image = UIImage(named: "snowyDay")
+        }else if weather.componentsSeparatedByString("云").count > 1 {
+            backgroudImg.image = UIImage(named: "cloudyDay")
+        }
+        else {
+            backgroudImg.image = UIImage(named: "wind")
+        }
+    }
     
     func changeTodayWeather(cityName:AnyObject,week:AnyObject,
         temperatureCurr:AnyObject, days:AnyObject,
@@ -89,17 +107,27 @@ class WeatherViewController: UIViewController {
             self.weatherImgConfig(weatherImgView, weather: weatherToday as String)
             
     }
-
-    
-    
     
     override func viewDidLoad() {
+       
+        
         super.viewDidLoad()
+        
         self.loadTodayWeather()
         self.loadFuture3DayWeather()
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var nav = self.navigationController?.navigationBar
+        nav?.setBackgroundImage(backgroudImg.image, forBarMetrics: UIBarMetrics.Default)
+        nav?.barStyle = UIBarStyle.Default
+        nav?.tintColor = UIColor.whiteColor()
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        nav?.hidden = false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -242,5 +270,11 @@ class WeatherViewController: UIViewController {
         
         changeFuture3Weather(week1, week2: week2, week3: week3, temp1: temperature1, temp2: temperature2, temp3: temperature3, weather1:weather1 , weather2: weather2, weather3: weather3, imgView1: tomorrowWeatherImg, imgView2: tomorrow2WeatherImg, imgView3: tomorrow3WeatherImg)
     }
+    
+    @IBAction func shareWeather(sender: UIBarButtonItem) {
+        var shareAlert = UIAlertView(title: "分享天气", message: "已成功分享给爷爷奶奶姥姥姥爷爸爸妈妈叔叔婶婶姨姨舅舅姑姑姑父（本功能有待开发☺️）", delegate: self, cancelButtonTitle: "好的")
+        shareAlert.show()
+    }
+    
 
 }

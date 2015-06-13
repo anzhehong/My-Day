@@ -10,6 +10,7 @@ import UIKit
 
 class TodayCourseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
+    @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var todayCourse = [CourseInfoModel]()
@@ -22,11 +23,10 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.dataSource = self
         tableView.delegate = self
         tableView.reloadData()
+        
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
-        super.viewWillAppear(animated)
+    func loadData() {
         amCourseNum = 0;
         pmCourseNum = 0;
         todayCourse = [CourseInfoModel]()
@@ -79,6 +79,23 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.reloadData()
     }
     
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadData()
+        
+        var nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.Default
+        nav?.tintColor = UIColor.whiteColor()
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.brownColor()]
+        nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
+        nav?.hidden = false
+        
+        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+        
+    }
+
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -93,6 +110,10 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         return self.loadData(tableView, cellForRowAtIndexPath: indexPath)
         
     }
+    
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+//        
+//    }
     
     func loadData(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell
     {
@@ -138,7 +159,7 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     return courseCell
                 }else{
                     var label = noCourseCell.viewWithTag(101) as UILabel
-                    label.text = "上午没有课，换个心情休息一下"
+                    label.text = "今天是" + dateStr + "，上午没有课，换个心情休息一下"
                     return noCourseCell
                 }
             }else{
@@ -192,7 +213,7 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     return courseCell
                 }else{
                     var label = noCourseCell.viewWithTag(101) as UILabel
-                    label.text = "下午没有课，换个心情休息一下"
+                    label.text = "今天是" + dateStr + "，下午没有课，换个心情休息一下"
                     return noCourseCell
                 }
             }else if pmCourseNum == 2{
@@ -282,8 +303,14 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
     }
+    @IBAction func showWholeWeekCourses(sender: UIBarButtonItem) {
+        var wholeWeekCourseView = self.storyboard?.instantiateViewControllerWithIdentifier("wholeWeekCourseViewController") as WholeWeekCourseViewController
+        self.navigationController?.pushViewController(wholeWeekCourseView, animated: false)
+    }
     
 }
+
+
 
 extension NSDate{
     

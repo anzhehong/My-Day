@@ -24,6 +24,11 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     var centerOfLeftViewAtBeginning: CGPoint!
     var proportionOfLeftView: CGFloat = 1
     var distanceOfLeftView: CGFloat = 50
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+        
     
     override func viewDidLoad() {
         super.viewDidLoad()

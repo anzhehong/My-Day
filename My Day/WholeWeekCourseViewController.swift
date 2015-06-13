@@ -15,13 +15,22 @@ class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSourc
     var screenBounds = UIScreen.mainScreen().applicationFrame
     @IBOutlet weak var courseCollectionView: UICollectionView!
     
+    @IBOutlet weak var courseBackView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        courseCollectionView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+        courseBackView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+
+        
+//        courseCollectionView.alpha = 1
+//        courseCollectionView.alpha = 0.3
 
         courseCollectionView.delegate = self
         courseCollectionView.dataSource = self
-        
+       
         //load courses from userDefault
         let userDefault = NSUserDefaults.standardUserDefaults()
 
@@ -46,28 +55,72 @@ class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSourc
         
     }
     
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        var nav = self.navigationController?.navigationBar
+                nav?.barStyle = UIBarStyle.Default
+        nav?.tintColor = UIColor.whiteColor()
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.brownColor()]
+        nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
+        nav?.hidden = false
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
    
+    func cellBackColorConfig(cell:UICollectionViewCell, indexPath:NSIndexPath) {
+        if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).isTaken == false{
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseNone")!)
+            cell.alpha = 0.3
+        }
+        else if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace.componentsSeparatedByString("A").count > 1 {
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseRed")!)
+            cell.alpha = 0.75
+        }else if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace.componentsSeparatedByString("B").count > 1 {
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseGreen")!)
+            cell.alpha = 0.75
+        }else if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace.componentsSeparatedByString("C").count > 1 {
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseGreendark")!)
+            cell.alpha = 0.75
+        }else if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace.componentsSeparatedByString("D").count > 1 {
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseGreenYellow")!)
+            cell.alpha = 0.75
+        }else if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace.componentsSeparatedByString("F").count > 1 {
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseYellow")!)
+            cell.alpha = 0.9
+        }else if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace.componentsSeparatedByString("济事楼").count > 1 {
+            cell.backgroundColor = UIColor.purpleColor()
+            cell.alpha = 0.5
+        }else {
+            cell.backgroundColor = UIColor.orangeColor()
+            cell.alpha = 0.75
+        }
+    }
     
     
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         var cell = courseCollectionView.dequeueReusableCellWithReuseIdentifier("courseCell", forIndexPath: indexPath) as UICollectionViewCell
-        
-        if CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).isTaken == false{
-            cell.backgroundColor = UIColor.grayColor()
-        }else{
-            cell.backgroundColor = UIColor.orangeColor()
-        }
+        self.cellBackColorConfig(cell, indexPath: indexPath)
+
 
         var courseNameView = cell.viewWithTag(1) as UILabel
         courseNameView.text = CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).courseName
         var coursePlaceView = cell.viewWithTag(2) as UILabel
-        coursePlaceView.text = CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace
+        coursePlaceView.text = "@" + CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace
+        courseNameView.textColor = UIColor.whiteColor()
+        coursePlaceView.textColor = UIColor.whiteColor()
+        coursePlaceView.font = UIFont.italicSystemFontOfSize(15)
+        
+        cell.layer.cornerRadius = 8
+        cell.layer.masksToBounds = true
+        
         return cell
     }
     
@@ -92,7 +145,7 @@ class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSourc
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     {
-        return CGSize(width: screenBounds.size.width/7-5, height: screenBounds.size.height/5)
+        return CGSize(width: screenBounds.size.width/7-5, height: screenBounds.size.height/5/1.17)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat
