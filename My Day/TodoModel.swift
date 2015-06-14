@@ -15,8 +15,12 @@ class TodoModel: NSObject, NSCoding {
     var type: String?
     var date: String?
     
+//    ////
+    var completed: Bool?
+
+    
     override init() {
-        
+        self.completed = false
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -24,13 +28,15 @@ class TodoModel: NSObject, NSCoding {
         self.title = aDecoder.decodeObjectForKey("title") as? String
         self.type = aDecoder.decodeObjectForKey("type") as? String
         self.date = aDecoder.decodeObjectForKey("date") as? String
+        self.completed = aDecoder.decodeObjectForKey("flag") as? Bool
+
     }
     
     //在这个方法里指定如何归档对象中的每个实例变量，可以使用encodeObject:forKey方法归档实例变量
     func encodeWithCoder(aCoder: NSCoder) {
         
         if let todoId = self.id{
-            aCoder.encodeObject(todoId, forKey: "myCourses")
+            aCoder.encodeObject(todoId, forKey: "id")
         }
         
         if let todoTitle = self.title{
@@ -44,6 +50,10 @@ class TodoModel: NSObject, NSCoding {
         if let todoDate = self.date{
             aCoder.encodeObject(todoDate, forKey: "date")
         }
+        if let todoCompleted = self.completed {
+            aCoder.encodeObject(todoCompleted, forKey: "flag")
+        }
+        
     }
     
     

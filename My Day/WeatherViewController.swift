@@ -13,25 +13,24 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var backgroudImg: UIImageView!
     
 //    今日
+
     @IBOutlet weak var placeLabel: UILabel!
+
     
     @IBOutlet weak var currentTemperatureLabel: UILabel!
     
-    @IBOutlet weak var currentDayLabel: UILabel!
+    @IBOutlet weak var currentDayAndWeekLabel: UILabel!
+
+    
+    @IBOutlet weak var todayTemperatureLabel: UILabel!
     
     @IBOutlet weak var todayWeatherImage: UIImageView!
     
-    @IBOutlet weak var todayWeather: UILabel!
-    
-    @IBOutlet weak var todayHighTempLabel: UILabel!
-    
-    @IBOutlet weak var todayLowTempLabel: UILabel!
+//    @IBOutlet weak var todayWeather: UILabel!
     
     @IBOutlet weak var currentHumidityLabel: UILabel!
     
-    @IBOutlet weak var windTodayLabel: UILabel!
-    
-    @IBOutlet weak var winpTodayLabel: UILabel!
+    @IBOutlet weak var windAndWinpLabel: UILabel!
     
 //    未来三天
     @IBOutlet weak var tomorrowWeekLabel: UILabel!
@@ -87,23 +86,20 @@ class WeatherViewController: UIViewController {
         temperatureHigh:AnyObject,temperatureLow:AnyObject,
         humidity:AnyObject,humidityHigh:AnyObject,
         humidityLow:AnyObject,weatherToday:AnyObject,
-        wind:AnyObject, winp:AnyObject,weatherImgView:UIImageView) {
+        wind:AnyObject, winp:AnyObject,
+        weatherImgView:UIImageView,weekCurr:AnyObject,
+        todayTemperature:AnyObject) {
             placeLabel.text  = cityName as? String
-            
+            currentTemperatureLabel.text = temperatureCurr as? String
+            currentHumidityLabel.text = humidity as? String
             var dayToday = NSDate()
             var dayTodayFormatter = NSDateFormatter()
             dayTodayFormatter.dateFormat = "MM月dd日"
             var dayTodayStr = dayTodayFormatter.stringFromDate(dayToday)
-            currentDayLabel.text = dayTodayStr
-            currentTemperatureLabel.text = temperatureCurr as? String
-            todayHighTempLabel.text = temperatureHigh as? String
-            todayLowTempLabel.text = temperatureLow as? String
-            
-            currentHumidityLabel.text = humidity as? String
-            windTodayLabel.text = "实时风向  \(wind)"
-            
-            winpTodayLabel.text = winp as? String
-            todayWeather.text = weatherToday as? String
+            currentDayAndWeekLabel.text = "\(dayTodayStr) \(weekCurr)"
+            todayTemperatureLabel.text = "\(todayTemperature)"
+            windAndWinpLabel.text = "\(wind) \(winp)"
+            //            todayWeather.text = weatherToday as? String
             self.weatherImgConfig(weatherImgView, weather: weatherToday as String)
             
     }
@@ -161,9 +157,7 @@ class WeatherViewController: UIViewController {
         var winpToday:AnyObject! = resultToday.objectForKey("winp")
         
         //显示今日天气
-        changeTodayWeather(citynm, week: weekToday, temperatureCurr: temperature_currToday, days: daysToday, temperatureHigh: temp_highToday, temperatureLow: temp_lowToday, humidity: humidityToday, humidityHigh: humi_highToday, humidityLow: humi_lowToday, weatherToday: weatherToday, wind: windToday, winp: winpToday, weatherImgView: todayWeatherImage)
-
-        
+        changeTodayWeather(citynm, week: weekToday, temperatureCurr: temperature_currToday, days: daysToday, temperatureHigh: temp_highToday, temperatureLow: temp_lowToday, humidity: humidityToday, humidityHigh: humi_highToday, humidityLow: humi_lowToday, weatherToday: weatherToday, wind: windToday, winp: winpToday, weatherImgView: todayWeatherImage,weekCurr:weekToday,todayTemperature:temperatureToday)
     }
     
     
@@ -201,71 +195,71 @@ class WeatherViewController: UIViewController {
         
         //第一天
         
-        var days1: AnyObject! = result[0].objectForKey("days")
-        var week1: AnyObject! = result[0].objectForKey("week")
+        var days1: AnyObject! = result[1].objectForKey("days")
+        var week1: AnyObject! = result[1].objectForKey("week")
         //最高温度
-        var temp_high1: AnyObject! = result[0].objectForKey("temp_high")
+        var temp_high1: AnyObject! = result[1].objectForKey("temp_high")
         //最低温度
-        var temp_low1: AnyObject! = result[0].objectForKey("temp_low")
+        var temp_low1: AnyObject! = result[1].objectForKey("temp_low")
         //温度
-        var temperature1: AnyObject! = result[0].objectForKey("temperature")
+        var temperature1: AnyObject! = result[1].objectForKey("temperature")
         //湿度
-        var humidity1: AnyObject! = result[0].objectForKey("humidity")
+        var humidity1: AnyObject! = result[1].objectForKey("humidity")
         //最高湿度
-        var humi_high1: AnyObject! = result[0].objectForKey("humi_high")
+        var humi_high1: AnyObject! = result[1].objectForKey("humi_high")
         //最低湿度
-        var humi_low1: AnyObject! = result[0].objectForKey("humi_low")
+        var humi_low1: AnyObject! = result[1].objectForKey("humi_low")
         //风向
-        var wind1: AnyObject! = result[0].objectForKey("wind")
+        var wind1: AnyObject! = result[1].objectForKey("wind")
         //风力
-        var winp1: AnyObject! = result[0].objectForKey("winp")
-        var weather1: AnyObject! = result[0].objectForKey("weather")
+        var winp1: AnyObject! = result[1].objectForKey("winp")
+        var weather1: AnyObject! = result[1].objectForKey("weather")
         
         
         //第二天
         
-        var days2: AnyObject! = result[1].objectForKey("days")
-        var week2: AnyObject! = result[1].objectForKey("week")
+        var days2: AnyObject! = result[2].objectForKey("days")
+        var week2: AnyObject! = result[2].objectForKey("week")
         //最高温度
-        var temp_high2: AnyObject! = result[1].objectForKey("temp_high")
+        var temp_high2: AnyObject! = result[2].objectForKey("temp_high")
         //最低温度
-        var temp_low2: AnyObject! = result[1].objectForKey("temp_low")
+        var temp_low2: AnyObject! = result[2].objectForKey("temp_low")
         //温度
-        var temperature2: AnyObject! = result[1].objectForKey("temperature")
+        var temperature2: AnyObject! = result[2].objectForKey("temperature")
         //湿度
-        var humidity2: AnyObject! = result[1].objectForKey("humidity")
+        var humidity2: AnyObject! = result[2].objectForKey("humidity")
         //最高湿度
-        var humi_high2: AnyObject! = result[1].objectForKey("humi_high")
+        var humi_high2: AnyObject! = result[2].objectForKey("humi_high")
         //最低湿度
-        var humi_low2: AnyObject! = result[1].objectForKey("humi_low")
+        var humi_low2: AnyObject! = result[2].objectForKey("humi_low")
         //风向
-        var wind2: AnyObject! = result[1].objectForKey("wind")
+        var wind2: AnyObject! = result[2].objectForKey("wind")
         //风力
-        var winp2: AnyObject! = result[1].objectForKey("winp")
-        var weather2: AnyObject! = result[1].objectForKey("weather")
+        var winp2: AnyObject! = result[2].objectForKey("winp")
+        var weather2: AnyObject! = result[2].objectForKey("weather")
     
         
         //第三天
         
-        var days3: AnyObject! = result[2].objectForKey("days")
-        var week3: AnyObject! = result[2].objectForKey("week")
+        var days3: AnyObject! = result[3].objectForKey("days")
+        var week3: AnyObject! = result[3].objectForKey("week")
         //最高温度
-        var temp_high3: AnyObject! = result[2].objectForKey("temp_high")
+        var temp_high3: AnyObject! = result[3].objectForKey("temp_high")
         //最低温度
-        var temp_low3: AnyObject! = result[2].objectForKey("temp_low")
+        var temp_low3: AnyObject! = result[3].objectForKey("temp_low")
         //温度
-        var temperature3: AnyObject! = result[2].objectForKey("temperature")
+        var temperature3: AnyObject! = result[3].objectForKey("temperature")
         //湿度
-        var humidity3: AnyObject! = result[2].objectForKey("humidity")
+        var humidity3: AnyObject! = result[3].objectForKey("humidity")
         //最高湿度
-        var humi_high3: AnyObject! = result[2].objectForKey("humi_high")
+        var humi_high3: AnyObject! = result[3].objectForKey("humi_high")
         //最低湿度
-        var humi_low3: AnyObject! = result[2].objectForKey("humi_low")
+        var humi_low3: AnyObject! = result[3].objectForKey("humi_low")
         //风向
-        var wind3: AnyObject! = result[2].objectForKey("wind")
+        var wind3: AnyObject! = result[3].objectForKey("wind")
         //风力
-        var winp3: AnyObject! = result[2].objectForKey("winp")
-        var weather3: AnyObject! = result[2].objectForKey("weather")
+        var winp3: AnyObject! = result[3].objectForKey("winp")
+        var weather3: AnyObject! = result[3].objectForKey("weather")
         
         
         changeFuture3Weather(week1, week2: week2, week3: week3, temp1: temperature1, temp2: temperature2, temp3: temperature3, weather1:weather1 , weather2: weather2, weather3: weather3, imgView1: tomorrowWeatherImg, imgView2: tomorrow2WeatherImg, imgView3: tomorrow3WeatherImg)

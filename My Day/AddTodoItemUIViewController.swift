@@ -70,7 +70,7 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
     @IBAction func createDidClicked(sender: AnyObject) {
         
         let uuid = NSUUID().UUIDString
-        println(uuid)
+//        println(uuid)
         
 //        根据当前时区取
         let locale = NSLocale.currentLocale()
@@ -94,6 +94,7 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
             todoItem.title = title
             todoItem.type = type
             todoItem.date = time
+            todoItem.completed = false
             
             if let list = currentDefault.valueForKey("Todo") as? [NSData] {
                 
@@ -115,6 +116,7 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
                 tempTodo.title = title
                 tempTodo.type = type
                 tempTodo.date = time
+                tempTodo.completed = false
                 let tempData: NSData? = tempTodo.todoToNSData()
                 todoList[currentIndex!] = tempData!
     

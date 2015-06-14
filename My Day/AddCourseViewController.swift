@@ -70,6 +70,14 @@ class AddCourseViewController: UIViewController {
         
     }
     
+    @IBAction func deleteThisCourse(sender: UIButton) {
+        coursePlace.text = ""
+        courseName.text = ""
+        okDidClicked(UIButton())
+    }
+    
+    
+    
     func getCourseTime(weekPos:Int, classPos: Int) ->String{
         var weekStr = "";
         var classStr = "";
