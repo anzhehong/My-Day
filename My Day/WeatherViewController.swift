@@ -71,6 +71,9 @@ class WeatherViewController: UIViewController {
             backgroudImg.image = UIImage(named: "cloudyDay")
         }else if weather.componentsSeparatedByString("雨").count > 1  {
             backgroudImg.image = UIImage(named: "rainyDay")
+//            todayTemperatureLabel.tintColor = UIColor.blueColor()
+//            todayTemperatureLabel.textColor = UIColor.blueColor()
+//            todayTemperatureLabel.font = UIFont.boldSystemFontOfSize(23)
         }else if weather.componentsSeparatedByString("雪").count > 1 {
             backgroudImg.image = UIImage(named: "snowyDay")
         }else if weather.componentsSeparatedByString("云").count > 1 {
@@ -112,6 +115,7 @@ class WeatherViewController: UIViewController {
         
         self.loadTodayWeather()
         self.loadFuture3DayWeather()
+        backgroudImg.alpha = 0.8
         // Do any additional setup after loading the view.
     }
 
