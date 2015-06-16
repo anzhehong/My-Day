@@ -100,7 +100,8 @@ class WeatherViewController: UIViewController {
             todayTemperatureLabel.text = "\(todayTemperature)"
             windAndWinpLabel.text = "\(wind) \(winp)"
             //            todayWeather.text = weatherToday as? String
-            self.weatherImgConfig(weatherImgView, weather: weatherToday as String)
+            self.weatherImgConfig(weatherImgView, weather: weatherToday as! String)
+            self.backgroundImgConfig(weatherToday as! String)
             
     }
     
@@ -176,9 +177,9 @@ class WeatherViewController: UIViewController {
             tomorrow2TemLabel.text = temp2 as?String
             tomorrow3TemLabel.text = temp3 as?String
             
-            self.weatherImgConfig(imgView1, weather: weather1 as String)
-            self.weatherImgConfig(imgView2, weather: weather2 as String)
-            self.weatherImgConfig(imgView3, weather: weather3 as String)
+            self.weatherImgConfig(imgView1, weather: weather1 as! String)
+            self.weatherImgConfig(imgView2, weather: weather2 as! String)
+            self.weatherImgConfig(imgView3, weather: weather3 as! String)
             
         
     }
@@ -190,7 +191,7 @@ class WeatherViewController: UIViewController {
         var url = NSURL(string: "http://api.k780.com:88/?app=weather.future&weaid=38&&appkey=14248&sign=8f3a3981badca2bc2c0a8193f259f916&format=json")
         var data = NSData(contentsOfURL: url!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
         var json: AnyObject! = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments, error: nil)
-        var result: NSArray! = json.objectForKey("result") as NSArray
+        var result: NSArray! = json.objectForKey("result") as! NSArray
         
         
         //第一天

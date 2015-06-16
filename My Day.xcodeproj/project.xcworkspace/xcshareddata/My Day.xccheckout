@@ -11,7 +11,7 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A1380BBF976249A222FB5A2E700153A4E6FEFE5F</key>
-		<string>github.com:anzhehong/My-Day.git</string>
+		<string>https://github.com/anzhehong/My-Day</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>My Day.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:anzhehong/My-Day.git</string>
+	<string>https://github.com/anzhehong/My-Day</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

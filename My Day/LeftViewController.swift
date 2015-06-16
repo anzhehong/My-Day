@@ -34,7 +34,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController as ViewController
+        let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController as! ViewController
         //选择某一功能之后显示页面
         viewController.homeViewController.titleOfOtherPages = titlesDictionary[indexPath.row]
         //具体选哪个
@@ -55,7 +55,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var imageName:NSString = "leftViewCell" + "\(indexPath.row)"
-        let cell = tableView.dequeueReusableCellWithIdentifier(imageName as String, forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(imageName as String, forIndexPath: indexPath) as! UITableViewCell
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel!.text = titlesDictionary[indexPath.row]
         return cell

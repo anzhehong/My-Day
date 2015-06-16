@@ -59,9 +59,10 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
 //        itemType.resignFirstResponder()
 //        itemTitle.resignFirstResponder()
 //    }
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         itemType.resignFirstResponder()
         itemTitle.resignFirstResponder()
+
     }
 //
     

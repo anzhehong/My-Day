@@ -16,37 +16,29 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
+    
+    
+    //MARK - ViewControllerLife
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-
-//        todoList.append(TodoModel())
-//                todoList.append(TodoModel())
-//                todoList.append(TodoModel())
-//                todoList.append(TodoModel())
-//                todoList.append(TodoModel())
-//                todoList.append(TodoModel())
         
-//        ////
-//        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "todoCell")
-//        var toDoCell = storyboard?.instantiateViewControllerWithIdentifier("todoCell") as TableViewCell
+        
+        //        ////
+        //        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "todoCell")
+        //        var toDoCell = storyboard?.instantiateViewControllerWithIdentifier("todoCell") as TableViewCell
         tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "todoCell")
         tableView.separatorStyle = .None
         
         tableView.backgroundColor = UIColor.blackColor()
-//        tableView.rowHeight = 50.0
-        
-        
+        //        tableView.rowHeight = 50.0
         self.userDefaultConfig()
         
-        
         //add navigation item
-//        navigationItem.leftBarButtonItem = editButtonItem()
+//                navigationItem.leftBarButtonItem = editButtonItem()
     }
-    
-    
-    //MARK - ViewControllerLife
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -56,6 +48,8 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.brownColor()]
 //        nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
         nav?.hidden = false
+        
+        self.tableView.reloadData()
     }
 
     func userDefaultConfig() {
@@ -93,13 +87,11 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
 //        let cell = tableView.dequeueReusableCellWithIdentifier("todoCell") as UITableViewCell
-        let cell = tableView.dequeueReusableCellWithIdentifier("todoCell") as TableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("todoCell") as! TableViewCell
         cell.selectionStyle = .None
         
         let item = TodoModel.NSDataToTodo(todoList[indexPath.row])
-//        let item = todoList[indexPath.row]
-        
-//        cell.textLabel?.backgroundColor = UIColor.clearColor()
+
         
         //set background color
         //RGB:255 69 0
@@ -107,7 +99,6 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
 //        let currentBlue = CGFloat(currentIndex * 6)
 //        let currentGreen = CGFloat(69 + currentIndex*12)
 //        let currentColor = UIColor(red: 255/255, green: currentGreen/255, blue: currentBlue/255, alpha: 1)
-//        
 //        cell.backgroundColor = currentColor
         
         
@@ -131,11 +122,7 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func toDoItemDeleted(toDoItem: TodoModel) {
-//        let tempList = TodoModel.NSDataToTodo(todoList)
-//        println(tempArray)
-//        println(toDoItem)
-//        println(tempArray)
-
+        
         self.userDefaultConfig()
         
         var index = 0
@@ -149,7 +136,7 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
 //        let index = (tempArray as NSArray).indexOfObject(toDoItem)
-        println(index)
+//        println(index)
         if index == NSNotFound { return }
         
         // could removeAtIndex in the loop but keep it here for when indexOfObject works
@@ -179,7 +166,7 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
                 break
             }
         }
-        println(index)
+//        println(index)
         if index == NSNotFound { return }
 
         
@@ -232,21 +219,21 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
 //    上下调整
-//    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-//        let currentDefault = NSUserDefaults.standardUserDefaults()
-//        if let list = currentDefault.objectForKey("Todo") as? [NSData]{
-//            var todoList = list
-//            let todo = todoList.removeAtIndex(sourceIndexPath.row)
-//            todoList.insert(todo, atIndex: destinationIndexPath.row)
-//            currentDefault.setObject(todoList, forKey: "Todo")
-//        }
-//        self.tableView.reloadData()
-//        viewDidLoad()
-//    }
+    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        let currentDefault = NSUserDefaults.standardUserDefaults()
+        if let list = currentDefault.objectForKey("Todo") as? [NSData]{
+            var todoList = list
+            let todo = todoList.removeAtIndex(sourceIndexPath.row)
+            todoList.insert(todo, atIndex: destinationIndexPath.row)
+            currentDefault.setObject(todoList, forKey: "Todo")
+        }
+        self.tableView.reloadData()
+        viewDidLoad()
+    }
     
-//    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        return true
-//    }
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
     
     
 
@@ -269,11 +256,11 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
     //editSegue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "editTodo"{
-            var vc = segue.destinationViewController as AddTodoItemUIViewController
+            var vc = segue.destinationViewController as! AddTodoItemUIViewController
             var indexPath = tableView.indexPathForSelectedRow()
             
             if let index = indexPath{
-//                vc.currentTodoItem = TodoModel.NSDataToTodo(todoList[index.row])
+                vc.currentTodoItem = TodoModel.NSDataToTodo(todoList[index.row])
                 vc.currentIndex = index.row
             }
         }

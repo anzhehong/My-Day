@@ -20,9 +20,9 @@ class CourseInfoModel: NSObject,NSCoding {
     }
     
     required init(coder aDecoder: NSCoder) {
-        self.courseName = aDecoder.decodeObjectForKey("courseName") as String
-        self.coursPlace = aDecoder.decodeObjectForKey("coursPlace") as String
-        self.isTaken = aDecoder.decodeObjectForKey("isTaken")as Bool
+        self.courseName = aDecoder.decodeObjectForKey("courseName") as! String
+        self.coursPlace = aDecoder.decodeObjectForKey("coursPlace") as! String
+        self.isTaken = aDecoder.decodeObjectForKey("isTaken")as! Bool
     }
     
     //在这个方法里指定如何归档对象中的每个实例变量，可以使用encodeObject:forKey方法归档实例变量
@@ -38,7 +38,7 @@ class CourseInfoModel: NSObject,NSCoding {
     }
     
     class func NSDataToCourse(data: NSData)-> CourseInfoModel{
-        return NSKeyedUnarchiver.unarchiveObjectWithData(data) as CourseInfoModel
+        return NSKeyedUnarchiver.unarchiveObjectWithData(data) as! CourseInfoModel
     }
 
     

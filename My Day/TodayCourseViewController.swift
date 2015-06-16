@@ -117,9 +117,9 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
     
     func loadData(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell
     {
-        let timeCell = tableView.dequeueReusableCellWithIdentifier("TimeCell") as UITableViewCell
-        let courseCell = tableView.dequeueReusableCellWithIdentifier("CourseCell") as UITableViewCell
-        let noCourseCell = tableView.dequeueReusableCellWithIdentifier("NoCourseCell") as UITableViewCell
+        let timeCell = tableView.dequeueReusableCellWithIdentifier("TimeCell") as! UITableViewCell
+        let courseCell = tableView.dequeueReusableCellWithIdentifier("CourseCell") as! UITableViewCell
+        let noCourseCell = tableView.dequeueReusableCellWithIdentifier("NoCourseCell") as! UITableViewCell
         
         //today week
         var date = NSDate().dayOfWeek()
@@ -136,45 +136,45 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         }
         
         if indexPath.row == 0 {
-            var label = timeCell.viewWithTag(101) as UILabel
+            var label = timeCell.viewWithTag(101) as! UILabel
             label.text = "AM"
             return timeCell
         }else if indexPath.row <= amCourseNum && indexPath.row > 0 {
             if amCourseNum == 1{
                 if todayCourse[0].isTaken{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[0].courseName
                     coursePlace.text = todayCourse[0].coursPlace
                     courseTime.text = dateStr + "  第一、二节"
                     return courseCell
                 }else if todayCourse[1].isTaken{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[1].courseName
                     coursePlace.text = todayCourse[1].coursPlace
                     courseTime.text = dateStr + "  第三、四节"
                     return courseCell
                 }else{
-                    var label = noCourseCell.viewWithTag(101) as UILabel
+                    var label = noCourseCell.viewWithTag(101) as! UILabel
                     label.text = "今天是" + dateStr + "，上午没有课，换个心情休息一下"
                     return noCourseCell
                 }
             }else{
                 if indexPath.row == 1{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[0].courseName
                     coursePlace.text = todayCourse[0].coursPlace
                     courseTime.text = dateStr + "  第一、二节"
                     return courseCell
                 }else{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[1].courseName
                     coursePlace.text = todayCourse[1].coursPlace
                     courseTime.text = dateStr + "  第三、四节"
@@ -182,37 +182,37 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                 }
             }
         }else if indexPath.row == amCourseNum + 1 {
-            var label = timeCell.viewWithTag(101) as UILabel
+            var label = timeCell.viewWithTag(101) as! UILabel
             label.text = "PM"
             return timeCell
         }else{
             if pmCourseNum == 1{
                 if todayCourse[2].isTaken{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[2].courseName
                     coursePlace.text = todayCourse[2].coursPlace
                     courseTime.text = dateStr + "  第五、六节"
                     return courseCell
                 }else if todayCourse[3].isTaken{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[3].courseName
                     coursePlace.text = todayCourse[3].coursPlace
                     courseTime.text = dateStr + "  第七、八节"
                     return courseCell
                 }else if todayCourse[4].isTaken{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[4].courseName
                     coursePlace.text = todayCourse[4].coursPlace
                     courseTime.text = dateStr + "  第九十十一节"
                     return courseCell
                 }else{
-                    var label = noCourseCell.viewWithTag(101) as UILabel
+                    var label = noCourseCell.viewWithTag(101) as! UILabel
                     label.text = "今天是" + dateStr + "，下午没有课，换个心情休息一下"
                     return noCourseCell
                 }
@@ -220,17 +220,17 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                 
                 if todayCourse[2].isTaken && todayCourse[3].isTaken{
                     if indexPath.row == amCourseNum + 2{
-                        var courseName = courseCell.viewWithTag(101) as UILabel
-                        var coursePlace = courseCell.viewWithTag(102) as UILabel
-                        var courseTime = courseCell.viewWithTag(103) as UILabel
+                        var courseName = courseCell.viewWithTag(101) as! UILabel
+                        var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                        var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[2].courseName
                         coursePlace.text = todayCourse[2].coursPlace
                         courseTime.text = dateStr + "  第五、六节"
                         return courseCell
                     }else{
-                        var courseName = courseCell.viewWithTag(101) as UILabel
-                        var coursePlace = courseCell.viewWithTag(102) as UILabel
-                        var courseTime = courseCell.viewWithTag(103) as UILabel
+                        var courseName = courseCell.viewWithTag(101) as! UILabel
+                        var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                        var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[3].courseName
                         coursePlace.text = todayCourse[3].coursPlace
                         courseTime.text = dateStr + "  第七、八节"
@@ -238,17 +238,17 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     }
                 }else if todayCourse[3].isTaken && todayCourse[4].isTaken{
                     if indexPath.row == amCourseNum + 2{
-                        var courseName = courseCell.viewWithTag(101) as UILabel
-                        var coursePlace = courseCell.viewWithTag(102) as UILabel
-                        var courseTime = courseCell.viewWithTag(103) as UILabel
+                        var courseName = courseCell.viewWithTag(101) as! UILabel
+                        var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                        var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[2].courseName
                         coursePlace.text = todayCourse[2].coursPlace
                         courseTime.text = dateStr + "  第七、八节"
                         return courseCell
                     }else{
-                        var courseName = courseCell.viewWithTag(101) as UILabel
-                        var coursePlace = courseCell.viewWithTag(102) as UILabel
-                        var courseTime = courseCell.viewWithTag(103) as UILabel
+                        var courseName = courseCell.viewWithTag(101) as! UILabel
+                        var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                        var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[3].courseName
                         coursePlace.text = todayCourse[3].coursPlace
                         courseTime.text = dateStr + "  第九十十一节"
@@ -256,17 +256,17 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     }
                 }else{
                     if indexPath.row == amCourseNum + 2{
-                        var courseName = courseCell.viewWithTag(101) as UILabel
-                        var coursePlace = courseCell.viewWithTag(102) as UILabel
-                        var courseTime = courseCell.viewWithTag(103) as UILabel
+                        var courseName = courseCell.viewWithTag(101) as! UILabel
+                        var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                        var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[2].courseName
                         coursePlace.text = todayCourse[2].coursPlace
                         courseTime.text = dateStr + "  第五、六节"
                         return courseCell
                     }else{
-                        var courseName = courseCell.viewWithTag(101) as UILabel
-                        var coursePlace = courseCell.viewWithTag(102) as UILabel
-                        var courseTime = courseCell.viewWithTag(103) as UILabel
+                        var courseName = courseCell.viewWithTag(101) as! UILabel
+                        var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                        var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[3].courseName
                         coursePlace.text = todayCourse[3].coursPlace
                         courseTime.text = dateStr + "  第九十十一节"
@@ -276,25 +276,25 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                 
             }else{
                 if indexPath.row == amCourseNum + 2{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[2].courseName
                     coursePlace.text = todayCourse[2].coursPlace
                     courseTime.text = dateStr + "  第五、六节"
                     return courseCell
                 }else if indexPath.row == amCourseNum + 3{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[3].courseName
                     coursePlace.text = todayCourse[3].coursPlace
                     courseTime.text = dateStr + "  第七、八节"
                     return courseCell
                 }else{
-                    var courseName = courseCell.viewWithTag(101) as UILabel
-                    var coursePlace = courseCell.viewWithTag(102) as UILabel
-                    var courseTime = courseCell.viewWithTag(103) as UILabel
+                    var courseName = courseCell.viewWithTag(101) as! UILabel
+                    var coursePlace = courseCell.viewWithTag(102) as! UILabel
+                    var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[4].courseName
                     coursePlace.text = todayCourse[4].coursPlace
                     courseTime.text = dateStr + "  第九十十一节"
@@ -304,7 +304,7 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     @IBAction func showWholeWeekCourses(sender: UIBarButtonItem) {
-        var wholeWeekCourseView = self.storyboard?.instantiateViewControllerWithIdentifier("wholeWeekCourseViewController") as WholeWeekCourseViewController
+        var wholeWeekCourseView = self.storyboard?.instantiateViewControllerWithIdentifier("wholeWeekCourseViewController") as! WholeWeekCourseViewController
         self.navigationController?.pushViewController(wholeWeekCourseView, animated: false)
     }
     

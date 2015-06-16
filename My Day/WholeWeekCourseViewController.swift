@@ -106,13 +106,13 @@ class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSourc
     // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        var cell = courseCollectionView.dequeueReusableCellWithReuseIdentifier("courseCell", forIndexPath: indexPath) as UICollectionViewCell
+        var cell = courseCollectionView.dequeueReusableCellWithReuseIdentifier("courseCell", forIndexPath: indexPath) as! UICollectionViewCell
         self.cellBackColorConfig(cell, indexPath: indexPath)
 
 
-        var courseNameView = cell.viewWithTag(1) as UILabel
+        var courseNameView = cell.viewWithTag(1) as! UILabel
         courseNameView.text = CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).courseName
-        var coursePlaceView = cell.viewWithTag(2) as UILabel
+        var coursePlaceView = cell.viewWithTag(2) as! UILabel
         coursePlaceView.text = "@" + CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row]).coursPlace
         courseNameView.textColor = UIColor.whiteColor()
         coursePlaceView.textColor = UIColor.whiteColor()
@@ -129,7 +129,7 @@ class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSourc
     {
 //        println("\(indexPath.row)")
         //goto edit page
-        var info:AddCourseViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddCourseViewController") as AddCourseViewController
+        var info:AddCourseViewController = self.storyboard?.instantiateViewControllerWithIdentifier("AddCourseViewController") as! AddCourseViewController
         info.course = CourseInfoModel.NSDataToCourse(coursesDic[indexPath.row])
         info.currentIndexPath = indexPath.row
         self.navigationController?.pushViewController(info, animated: true)

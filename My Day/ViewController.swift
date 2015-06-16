@@ -39,7 +39,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         self.view.addSubview(imageView)
         
         // 通过 StoryBoard 取出 LeftViewController
-        leftViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LeftViewController") as LeftViewController
+        leftViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("LeftViewController") as! LeftViewController
         if Common.screenWidth > 320 {
             proportionOfLeftView = Common.screenWidth / 320
             distanceOfLeftView += (Common.screenWidth - 320) * FullDistance / 2
@@ -58,8 +58,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         // 通过 StoryBoard 取出 HomeViewController 的 view，放在背景视图上面
         mainView = UIView(frame: self.view.frame)
-        homeNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeNavigationController") as UINavigationController
-        homeViewController = homeNavigationController.viewControllers.first as HomeViewController
+        homeNavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("HomeNavigationController") as! UINavigationController
+        homeViewController = homeNavigationController.viewControllers.first as! HomeViewController
         mainView.addSubview(homeViewController.navigationController!.view)
         mainView.addSubview(homeViewController.view)
         self.view.addSubview(mainView)

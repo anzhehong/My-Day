@@ -62,6 +62,6 @@ class TodoModel: NSObject, NSCoding {
     }
     
     class func NSDataToTodo(data: NSData)-> TodoModel{
-        return NSKeyedUnarchiver.unarchiveObjectWithData(data) as TodoModel
+        return NSKeyedUnarchiver.unarchiveObjectWithData(data) as! TodoModel
     }
 }
