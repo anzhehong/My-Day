@@ -79,7 +79,7 @@
 		6204A1ED1B2FC55A0054438A /* TodoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
 		624C96F61B2C8BC000DC0CA4 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		624C96F81B2C949600DC0CA4 /* StrikeThroughText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrikeThroughText.swift; sourceTree = "<group>"; };
-		626CBB5B1B30407E00D0E30E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = "My Day/CalendarViewController.swift"; sourceTree = "<group>"; };
+		626CBB5B1B30407E00D0E30E /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		629614741B19F6930010A60F /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		629614771B1A26BF0010A60F /* testURL.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = testURL.playground; sourceTree = "<group>"; };
 		62B43CDF1B20588D00A42DAF /* WholeWeekCourseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WholeWeekCourseViewController.swift; sourceTree = "<group>"; };
@@ -180,7 +180,6 @@
 		62D2D90A1B19D5A5001CBCD4 = {
 			isa = PBXGroup;
 			children = (
-				626CBB5B1B30407E00D0E30E /* CalendarViewController.swift */,
 				62D2D9151B19D5A5001CBCD4 /* My Day */,
 				62D2D92E1B19D5A6001CBCD4 /* My DayTests */,
 				62D2D9141B19D5A5001CBCD4 /* Products */,
@@ -251,6 +250,7 @@
 		62E03E0E1B2F287900B4DFDF /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				626CBB5B1B30407E00D0E30E /* CalendarViewController.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
