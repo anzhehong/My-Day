@@ -23,7 +23,14 @@ class HomeViewController: UIViewController {
 //        segmentView.setWidth(60, forSegmentAtIndex: 0)
 //        segmentView.setWidth(60, forSegmentAtIndex: 1)
 //        self.navigationItem.titleView = segmentView
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainView")!)
+        
+        
+//        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "mainView")!)
+
+//        var initView = UIView(frame: self.view.frame)
+//        var initViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CalendarHome") as! CalendarViewController
+//        self.view.addSubview(initViewController.view)
+
         
         
 

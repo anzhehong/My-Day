@@ -37,6 +37,9 @@ class CalendarViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         calendarView.commitCalendarViewUpdate()
+        
+        calendarView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        
         menuView.commitMenuViewUpdate()
     }
     
@@ -160,7 +163,7 @@ extension CalendarViewController: CVCalendarViewDelegate {
         dispatch_after(time, dispatch_get_main_queue()) {
             if (self.singleTap == true && self.doubleTap == false) {
                 // todo: write the days events into the text field below the calendar
-                println("single tap to display events")
+                println("查看日程")
                 self.events.text = self.getEvents(date)
             }
             
@@ -171,7 +174,7 @@ extension CalendarViewController: CVCalendarViewDelegate {
         if (self.singleTap == true) {
             self.doubleTap = true
             
-            println("double tap to open creation dialog")
+            println("新建日程")
             var events = self.getEvents(date)
             self.events.text = events
             createNewEventDialog(date, message: "")
@@ -219,7 +222,7 @@ extension CalendarViewController: CVCalendarViewDelegate {
             }
             
             if (message == "") {
-                message = "No Scheduled Events"
+                message = "今日无安排"
             }
         } else {
             println("Could not fetch \(error), \(error!.userInfo)")

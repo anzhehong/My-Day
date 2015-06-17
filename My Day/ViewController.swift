@@ -62,6 +62,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         homeViewController = homeNavigationController.viewControllers.first as! HomeViewController
         mainView.addSubview(homeViewController.navigationController!.view)
         mainView.addSubview(homeViewController.view)
+        
+        
         self.view.addSubview(mainView)
         
         homeViewController.navigationItem.leftBarButtonItem?.action = Selector("showLeft")

@@ -36,14 +36,41 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController as! ViewController
         //选择某一功能之后显示页面
-        viewController.homeViewController.titleOfOtherPages = titlesDictionary[indexPath.row]
-        //具体选哪个
-        viewController.homeViewController.performSegueWithIdentifier("showOtherPages", sender: self)
+//        viewController.homeViewController.titleOfOtherPages = titlesDictionary[indexPath.row]
+//        //具体选哪个
+//        viewController.homeViewController.performSegueWithIdentifier("showOtherPages", sender: self)
+        
+        if indexPath.row == 0 {
+            let subViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CalendarHome") as! CalendarViewController
+            println("Calendar")
+            viewController.homeViewController.navigationController?.pushViewController(subViewController, animated: true)
+        }else if indexPath.row == 1 {
+            let subViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("WeatherHome") as! WeatherViewController
+            println("Calendar")
+            viewController.homeViewController.navigationController?.pushViewController(subViewController, animated: true)
+
+            
+        }else if indexPath.row == 2 {
+            let subViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("todayCourseViewController") as! TodayCourseViewController
+            println("Calendar")
+            viewController.homeViewController.navigationController?.pushViewController(subViewController, animated: true)
+
+            
+        }else if indexPath.row == 3 {
+            let subViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TodoUIViewController") as! TodoUIViewController
+            println("Calendar")
+            viewController.homeViewController.navigationController?.pushViewController(subViewController, animated: true)
+
+        }else if indexPath.row == 4 {
+            var alert = UIAlertView(title: "Bill", message: "没做呢", delegate: nil, cancelButtonTitle: "Cancel")
+            alert.show()
+        }
         //选择之后左边的弹回去
         viewController.showHome()
         //cell中高亮取消
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titlesDictionary.count
