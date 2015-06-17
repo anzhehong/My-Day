@@ -23,6 +23,9 @@ class CalendarViewController: UIViewController {
         self.switched = true
     }
     
+    @IBAction func todayCliced(sender: AnyObject) {
+        self.switched = true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +42,13 @@ class CalendarViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        var nav = self.navigationController?.navigationBar
+
+        nav?.barStyle = UIBarStyle.Default
+        nav?.tintColor = UIColor.greenColor()
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        nav?.hidden = false
         
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
@@ -401,6 +411,9 @@ extension CalendarViewController {
             calendarView.changeDaysOutShowingState(true)
             shouldShowDaysOut = false
         }
+    }
+    @IBAction func todayMonthView(sender: AnyObject) {
+        calendarView.toggleCurrentDayView()
     }
     
     @IBAction func todayMonthView() {

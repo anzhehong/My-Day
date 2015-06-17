@@ -1481,7 +1481,7 @@
             </objects>
             <point key="canvasLocation" x="2269" y="372"/>
         </scene>
-        <!--Calendar View Controller-->
+        <!--日历-->
         <scene sceneID="Ubr-VS-6Hi">
             <objects>
                 <viewController id="Bw1-Wt-30E" customClass="CalendarViewController" customModule="My_Day" customModuleProvider="target" sceneMemberID="viewController">
@@ -1494,19 +1494,26 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January, 2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZK-9K-rPM">
-                                <rect key="frame" x="237" y="28" width="127" height="24"/>
+                                <rect key="frame" x="237" y="72" width="127" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4iW-b2-gVc" customClass="CVCalendarMenuView" customModule="My_Day" customModuleProvider="target">
-                                <rect key="frame" x="16" y="71" width="568" height="24"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4iW-b2-gVc" customClass="CVCalendarMenuView" customModule="My_Day" customModuleProvider="target">
+                                <rect key="frame" x="16" y="106" width="568" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dpS-qy-IqG"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="menuViewDelegate" destination="Bw1-Wt-30E" id="nox-XF-qJF"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oo1-Lv-KmQ">
-                                <rect key="frame" x="551" y="23" width="33" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oo1-Lv-KmQ">
+                                <rect key="frame" x="544" y="74" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="MOj-74-TIj"/>
+                                    <constraint firstAttribute="width" constant="40" id="byO-xo-hMs"/>
+                                </constraints>
                                 <state key="normal" image="present-100">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1516,19 +1523,14 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hP3-cP-dVD" customClass="CVCalendarView" customModule="My_Day" customModuleProvider="target">
-                                <rect key="frame" x="16" y="103" width="568" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="z8u-wJ-6Vg">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="480"/>
-                                    </constraint>
-                                </constraints>
+                                <rect key="frame" x="16" y="129" width="568" height="271"/>
                                 <connections>
                                     <outlet property="calendarAppearanceDelegate" destination="Bw1-Wt-30E" id="pMq-Qh-CSz"/>
                                     <outlet property="calendarDelegate" destination="Bw1-Wt-30E" id="OHh-09-vdv"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKE-bo-wLr">
-                                <rect key="frame" x="16" y="383" width="568" height="209"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKE-bo-wLr">
+                                <rect key="frame" x="16" y="395" width="568" height="205"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -1536,19 +1538,31 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="AZK-9K-rPM" firstAttribute="top" secondItem="wfe-di-M7h" secondAttribute="bottom" constant="8" symbolic="YES" id="IJT-fL-HIn"/>
-                            <constraint firstItem="hP3-cP-dVD" firstAttribute="top" secondItem="4iW-b2-gVc" secondAttribute="bottom" constant="8" symbolic="YES" id="MH3-p0-LDo"/>
-                            <constraint firstItem="oo1-Lv-KmQ" firstAttribute="trailing" secondItem="4iW-b2-gVc" secondAttribute="trailing" id="Sij-iT-T78"/>
-                            <constraint firstItem="hP3-cP-dVD" firstAttribute="trailing" secondItem="4iW-b2-gVc" secondAttribute="trailing" id="US7-JP-arN"/>
-                            <constraint firstItem="hP3-cP-dVD" firstAttribute="top" secondItem="Dr6-dJ-dMq" secondAttribute="top" constant="103" id="eFu-bT-14V"/>
-                            <constraint firstItem="hP3-cP-dVD" firstAttribute="leading" secondItem="Dr6-dJ-dMq" secondAttribute="leadingMargin" id="gXr-Br-6BQ"/>
-                            <constraint firstItem="oo1-Lv-KmQ" firstAttribute="top" secondItem="wfe-di-M7h" secondAttribute="bottom" constant="3" id="hcz-Hx-djJ"/>
-                            <constraint firstItem="4iW-b2-gVc" firstAttribute="trailing" secondItem="Dr6-dJ-dMq" secondAttribute="trailingMargin" id="mrP-ke-Zjk"/>
-                            <constraint firstItem="hP3-cP-dVD" firstAttribute="leading" secondItem="4iW-b2-gVc" secondAttribute="leading" id="sfB-gl-fcf"/>
-                            <constraint firstItem="4iW-b2-gVc" firstAttribute="top" secondItem="oo1-Lv-KmQ" secondAttribute="bottom" constant="15" id="z1K-Gc-z94"/>
-                            <constraint firstItem="AZK-9K-rPM" firstAttribute="centerX" secondItem="4iW-b2-gVc" secondAttribute="centerX" id="zIj-Jg-YdQ"/>
+                            <constraint firstItem="oo1-Lv-KmQ" firstAttribute="trailing" secondItem="Dr6-dJ-dMq" secondAttribute="trailingMargin" id="379-Uw-8Z8"/>
+                            <constraint firstItem="4iW-b2-gVc" firstAttribute="top" secondItem="AZK-9K-rPM" secondAttribute="bottom" constant="10" id="6eg-LT-QbR"/>
+                            <constraint firstItem="iUd-f6-TFw" firstAttribute="top" secondItem="hP3-cP-dVD" secondAttribute="bottom" constant="200" id="IuI-3a-fa2"/>
+                            <constraint firstItem="hP3-cP-dVD" firstAttribute="trailing" secondItem="Dr6-dJ-dMq" secondAttribute="trailingMargin" id="JSJ-XM-thV"/>
+                            <constraint firstItem="hP3-cP-dVD" firstAttribute="leading" secondItem="Dr6-dJ-dMq" secondAttribute="leadingMargin" id="NQ2-Lr-lQ3"/>
+                            <constraint firstItem="iUd-f6-TFw" firstAttribute="top" secondItem="pKE-bo-wLr" secondAttribute="bottom" id="NXG-iT-Tyc"/>
+                            <constraint firstItem="pKE-bo-wLr" firstAttribute="top" secondItem="hP3-cP-dVD" secondAttribute="bottom" constant="-5" id="Pkz-Ff-PoP"/>
+                            <constraint firstAttribute="centerX" secondItem="hP3-cP-dVD" secondAttribute="centerX" id="SX7-mf-py5"/>
+                            <constraint firstItem="oo1-Lv-KmQ" firstAttribute="top" secondItem="AZK-9K-rPM" secondAttribute="bottom" constant="-22" id="bPW-R8-wwZ"/>
+                            <constraint firstAttribute="centerX" secondItem="4iW-b2-gVc" secondAttribute="centerX" id="dhp-M2-A2F"/>
+                            <constraint firstAttribute="centerX" secondItem="pKE-bo-wLr" secondAttribute="centerX" id="eUI-eZ-n4u"/>
+                            <constraint firstItem="AZK-9K-rPM" firstAttribute="top" secondItem="wfe-di-M7h" secondAttribute="bottom" constant="8" id="egX-kV-gqc"/>
+                            <constraint firstItem="4iW-b2-gVc" firstAttribute="leading" secondItem="Dr6-dJ-dMq" secondAttribute="leadingMargin" id="gqb-9F-fnP"/>
+                            <constraint firstItem="hP3-cP-dVD" firstAttribute="top" secondItem="oo1-Lv-KmQ" secondAttribute="bottom" constant="15" id="iCn-aL-wQa"/>
+                            <constraint firstAttribute="centerX" secondItem="AZK-9K-rPM" secondAttribute="centerX" constant="-0.5" id="kbE-sn-Y22"/>
+                            <constraint firstItem="pKE-bo-wLr" firstAttribute="leading" secondItem="Dr6-dJ-dMq" secondAttribute="leadingMargin" id="lNP-sh-naZ"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="日历" id="ss7-xS-C0N">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="refresh" id="OBU-P3-1hU">
+                            <connections>
+                                <action selector="todayMonthView:" destination="Bw1-Wt-30E" id="kcT-MZ-jMH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="calendarView" destination="hP3-cP-dVD" id="t0u-P4-qa7"/>
                         <outlet property="events" destination="pKE-bo-wLr" id="fCM-YK-2MG"/>
