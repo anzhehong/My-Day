@@ -23,6 +23,7 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.dataSource = self
         tableView.delegate = self
         tableView.reloadData()
+//        tableView.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
         
     }
     
@@ -85,13 +86,15 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         self.loadData()
         
         var nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.Default
-        nav?.tintColor = UIColor.whiteColor()
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.brownColor()]
-        nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
+
+//        nav?.barStyle = UIBarStyle.Default
+        nav?.backgroundColor = UIColor.whiteColor()
+        nav?.tintColor = UIColor.blackColor()
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
+//        nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
         nav?.hidden = false
         
-        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+//        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
         
     }
 

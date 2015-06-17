@@ -69,7 +69,7 @@
             </objects>
             <point key="canvasLocation" x="1461" y="-1163"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Home-->
         <scene sceneID="BV4-6Z-rq0">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="Fx1-dH-sNI" customClass="HomeViewController" customModule="My_Day" customModuleProvider="target" sceneMemberID="viewController">
@@ -131,7 +131,7 @@
                             <outletCollection property="gestureRecognizers" destination="K2W-uQ-Kug" appends="YES" id="dcU-VM-hpd"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="L2n-Xk-sjs">
+                    <navigationItem key="navigationItem" title="Home" id="L2n-Xk-sjs">
                         <barButtonItem key="leftBarButtonItem" title="More" id="X2w-fB-3sQ"/>
                         <barButtonItem key="rightBarButtonItem" title="Right" id="sFN-Lg-wuy"/>
                     </navigationItem>
@@ -380,7 +380,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Via-eY-wOj">
                                 <rect key="frame" x="-4" y="4" width="608" height="596"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" red="0.96470594409999999" green="0.59215688710000003" blue="0.15686275059999999" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeCell" rowHeight="30" id="tjk-a5-aTO">
@@ -980,8 +980,9 @@
                                 <color key="textColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textBackground2" translatesAutoresizingMaskIntoConstraints="NO" id="Xew-AC-mMp" userLabel="textBackground1">
+                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textBackground2" translatesAutoresizingMaskIntoConstraints="NO" id="Xew-AC-mMp" userLabel="textBackground1">
                                 <rect key="frame" x="-4" y="480" width="608" height="120"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="cfH-mL-X0U"/>
                                 </constraints>

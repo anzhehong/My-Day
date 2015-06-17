@@ -234,13 +234,13 @@ extension CalendarViewController: CVCalendarViewDelegate {
             message: message,
             preferredStyle: .Alert)
         
-        let saveAction = UIAlertAction(title: "Add",
+        let saveAction = UIAlertAction(title: "添加日程",
             style: .Default) { (action: UIAlertAction!) -> Void in
                 let textField = alert.textFields![0] as! UITextField
                 self.saveEvent(textField.text, date: date)
         }
         
-        let cancelAction = UIAlertAction(title: "Close",
+        let cancelAction = UIAlertAction(title: "取消",
             style: .Default) { (action: UIAlertAction!) -> Void in
         }
         
