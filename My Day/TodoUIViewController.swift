@@ -135,8 +135,9 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
             cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseYellow")!)
             cell.typeImg.image = UIImage(named: "exercise")
         }else  {
-            cell.backgroundColor = UIColor.orangeColor()
-            cell.typeImg.image = UIImage(named: "exercise")
+            cell.backgroundColor = UIColor(red: 220/255, green: 114/255, blue: 0, alpha: 0.7)
+            cell.alpha = 0.3
+            cell.typeImg.image = UIImage(named: "otherTaskType")
         }
         
         
@@ -274,6 +275,9 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func close(segue: UIStoryboardSegue){
         self.tableView.reloadData()
         viewDidLoad()
+    }
+    @IBAction func todoHomeButton(sender: UIButton) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
 //    每一项点击之后可编辑

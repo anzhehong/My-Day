@@ -355,11 +355,14 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
     }
     @IBAction func showWholeWeekCourses(sender: UIBarButtonItem) {
         var wholeWeekCourseView = self.storyboard?.instantiateViewControllerWithIdentifier("wholeWeekCourseViewController") as! WholeWeekCourseViewController
-        self.navigationController?.pushViewController(wholeWeekCourseView, animated: false)
+        self.navigationController?.pushViewController(wholeWeekCourseView, animated: true)
     }
     @IBAction func showWholeWeekCourse(sender: UIButton) {
         var wholeWeekCourseView = self.storyboard?.instantiateViewControllerWithIdentifier("wholeWeekCourseViewController") as! WholeWeekCourseViewController
-        self.navigationController?.pushViewController(wholeWeekCourseView, animated: false)
+        self.navigationController?.pushViewController(wholeWeekCourseView, animated: true)
+    }
+    @IBAction func courseHomeButton(sender: UIButton) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
 }

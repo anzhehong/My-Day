@@ -123,6 +123,9 @@ class GameViewController: UIViewController, Twenty48Delegate {
             return Int(UIInterfaceOrientationMask.All.rawValue)
         }
     }
+    @IBAction func GameHomeButton(sender: UIButton) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -448,6 +448,11 @@ extension CalendarViewController {
     @IBAction func loadNext(sender: AnyObject) {
         calendarView.loadNextView()
     }
+    
+    
+    @IBAction func calendarHomeButton(sender: AnyObject) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
 }
 
 // MARK: - Convenience API Demo
