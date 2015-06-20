@@ -29,16 +29,20 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "calendarBack")!)
+        self.calendarView.backgroundColor = UIColor(patternImage: UIImage(named: "grayBack")!)
         monthLabel.text = CVDate(date: NSDate()).globalDescription
-        
+
+        monthLabel.font = UIFont(name: "Avenir", size: 30)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        
         calendarView.commitCalendarViewUpdate()
         
-        calendarView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+//        calendarView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         
         menuView.commitMenuViewUpdate()
     }
@@ -51,7 +55,7 @@ class CalendarViewController: UIViewController {
         nav?.barStyle = UIBarStyle.Default
         nav?.tintColor = UIColor.greenColor()
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        nav?.hidden = false
+        nav?.hidden = true
         
         let appDelegate =
         UIApplication.sharedApplication().delegate as! AppDelegate
@@ -165,6 +169,7 @@ extension CalendarViewController: CVCalendarViewDelegate {
                 // todo: write the days events into the text field below the calendar
                 println("查看日程")
                 self.events.text = self.getEvents(date)
+                self.events.textColor = UIColor.whiteColor()
             }
             
             self.singleTap = false
@@ -205,7 +210,7 @@ extension CalendarViewController: CVCalendarViewDelegate {
         managedContext.executeFetchRequest(fetchRequest,
             error: &error) as? [NSManagedObject]
         
-        var message = ""
+        var message = "To Do List\n"
         var current = 1
         
         if let results = fetchedResults {
@@ -216,7 +221,8 @@ extension CalendarViewController: CVCalendarViewDelegate {
                     message = "\(message)\n"
                 }
                 
-                message = "\(message)\(current).) \(val)"
+//                message = "\(message)\(current).) \(val)"
+                message = "\(message)  ●  \(val)\n"
                 
                 current = current + 1
             }
@@ -228,6 +234,7 @@ extension CalendarViewController: CVCalendarViewDelegate {
             println("Could not fetch \(error), \(error!.userInfo)")
             message = "No Scheduled Events"
         }
+        
         
         return message
     }

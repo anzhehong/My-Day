@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-                self.window!.rootViewController = GesturePasswordControllerViewController()
+//                self.window!.rootViewController = GesturePasswordControllerViewController()
         // Override point for customization after application launch.
         
         // 改变 StatusBar 颜色

@@ -22,9 +22,12 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.reloadData()
-//        tableView.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+        todayCourse = [CourseInfoModel]()
         
+        tableView.reloadData()
+        
+//        tableView.backgroundView?.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+//        self.loadData()
     }
     
     func loadData() {
@@ -52,7 +55,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                 var tempCourse = CourseInfoModel.NSDataToCourse(list[courseIndex + i * 7])
                 todayCourse.append(tempCourse)
             }
-        }else{
+        }
+        else {
             for var i = 0; i < 5; ++i {
                 todayCourse.append(CourseInfoModel())
             }
@@ -60,6 +64,7 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         
         for var i=0; i<2; ++i {
             if todayCourse[i].isTaken {
+                println(todayCourse[i].courseName)
                 amCourseNum++
             }
         }
@@ -71,6 +76,7 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         for var i = 2; i < 5; ++i {
             if todayCourse[i].isTaken {
                 pmCourseNum++
+                println(todayCourse[i].courseName)
             }
         }
         
@@ -92,9 +98,11 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         nav?.tintColor = UIColor.blackColor()
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor()]
 //        nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
-        nav?.hidden = false
+        nav?.hidden = true
         
 //        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+        
+        
         
     }
 
@@ -106,16 +114,19 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return amCourseNum + pmCourseNum + 2
+//        return amCourseNum + pmCourseNum + 2
+//        println(todayCourse.count)
+        return todayCourse.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         return self.loadData(tableView, cellForRowAtIndexPath: indexPath)
         
     }
     
 //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-//        
+//        return 50
 //    }
     
     func loadData(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell
@@ -123,6 +134,13 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         let timeCell = tableView.dequeueReusableCellWithIdentifier("TimeCell") as! UITableViewCell
         let courseCell = tableView.dequeueReusableCellWithIdentifier("CourseCell") as! UITableViewCell
         let noCourseCell = tableView.dequeueReusableCellWithIdentifier("NoCourseCell") as! UITableViewCell
+        
+//        println(courseCell)
+        
+        
+//        let tCell = self.view.viewWithTag(999)?.viewWithTag(1001)
+//        let cCel = self.view.viewWithTag(999)?.viewWithTag(1002)
+//        let noCell = tableView.viewWithTag(1003)
         
         //today week
         var date = NSDate().dayOfWeek()
@@ -137,10 +155,23 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         case 6: dateStr = "星期六"
         default: dateStr = "星期八"
         }
+//        timeCell.frame.size.height = 10
+//        timeCell.hidden = true
+//        noCourseCell.hidden = true
+//        courseCell.frame.size.height = 60
+//        noCourseCell.frame.size.height = 10
+        
+
+        var courseCellBackground = UIImageView(frame: CGRect(x: courseCell.frame.origin.x+20, y: courseCell.frame.origin.y+5, width: courseCell.frame.size.width-20, height: courseCell.frame.size.height-10))
+        courseCellBackground.backgroundColor = UIColor.orangeColor()
+        courseCellBackground.layer.cornerRadius = 10
+        courseCellBackground.alpha = 0.3
+        courseCell.addSubview(courseCellBackground)
+
         
         if indexPath.row == 0 {
             var label = timeCell.viewWithTag(101) as! UILabel
-            label.text = "AM"
+            label.text = "上午"
             return timeCell
         }else if indexPath.row <= amCourseNum && indexPath.row > 0 {
             if amCourseNum == 1{
@@ -150,7 +181,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[0].courseName
                     coursePlace.text = todayCourse[0].coursPlace
-                    courseTime.text = dateStr + "  第一、二节"
+//                    courseTime.text = dateStr + "  第一、二节"
+                    courseTime.text = "1~2节:  08:00 ~ 09:40"
                     return courseCell
                 }else if todayCourse[1].isTaken{
                     var courseName = courseCell.viewWithTag(101) as! UILabel
@@ -158,11 +190,12 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[1].courseName
                     coursePlace.text = todayCourse[1].coursPlace
-                    courseTime.text = dateStr + "  第三、四节"
+//                    courseTime.text = dateStr + "  第三、四节"
+                    courseTime.text = "3~4节:  10:00 ~ 11:40"
                     return courseCell
                 }else{
                     var label = noCourseCell.viewWithTag(101) as! UILabel
-                    label.text = "今天是" + dateStr + "，上午没有课，换个心情休息一下"
+                    label.text = "今天是" + dateStr + "\n上午没有课，换个心情休息一下"
                     return noCourseCell
                 }
             }else{
@@ -172,7 +205,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[0].courseName
                     coursePlace.text = todayCourse[0].coursPlace
-                    courseTime.text = dateStr + "  第一、二节"
+//                    courseTime.text = dateStr + "  第一、二节"
+                    courseTime.text = "1~2节:  08:00 ~ 09:40"
                     return courseCell
                 }else{
                     var courseName = courseCell.viewWithTag(101) as! UILabel
@@ -180,13 +214,14 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[1].courseName
                     coursePlace.text = todayCourse[1].coursPlace
-                    courseTime.text = dateStr + "  第三、四节"
+//                    courseTime.text = dateStr + "  第三、四节"
+                    courseTime.text = "3~4节:  10:00 ~ 11:40"
                     return courseCell
                 }
             }
         }else if indexPath.row == amCourseNum + 1 {
             var label = timeCell.viewWithTag(101) as! UILabel
-            label.text = "PM"
+            label.text = "下午"
             return timeCell
         }else{
             if pmCourseNum == 1{
@@ -196,7 +231,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[2].courseName
                     coursePlace.text = todayCourse[2].coursPlace
-                    courseTime.text = dateStr + "  第五、六节"
+//                    courseTime.text = dateStr + "  第五、六节"
+                    courseTime.text = "5~6节:  13:30 ~ 15:05"
                     return courseCell
                 }else if todayCourse[3].isTaken{
                     var courseName = courseCell.viewWithTag(101) as! UILabel
@@ -204,7 +240,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[3].courseName
                     coursePlace.text = todayCourse[3].coursPlace
-                    courseTime.text = dateStr + "  第七、八节"
+//                    courseTime.text = dateStr + "  第七、八节"
+                    courseTime.text = "7~8节:  15:25 ~ 17:00"
                     return courseCell
                 }else if todayCourse[4].isTaken{
                     var courseName = courseCell.viewWithTag(101) as! UILabel
@@ -212,11 +249,12 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[4].courseName
                     coursePlace.text = todayCourse[4].coursPlace
-                    courseTime.text = dateStr + "  第九十十一节"
+//                    courseTime.text = dateStr + "  第九十十一节"
+                    courseTime.text = "9~10节:  18:30 ~ 20:10"
                     return courseCell
                 }else{
                     var label = noCourseCell.viewWithTag(101) as! UILabel
-                    label.text = "今天是" + dateStr + "，下午没有课，换个心情休息一下"
+                    label.text = "今天是" + dateStr + "\n下午没有课，换个心情休息一下"
                     return noCourseCell
                 }
             }else if pmCourseNum == 2{
@@ -228,7 +266,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                         var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[2].courseName
                         coursePlace.text = todayCourse[2].coursPlace
-                        courseTime.text = dateStr + "  第五、六节"
+//                        courseTime.text = dateStr + "  第五、六节"
+                    courseTime.text = "5~6节:  13:30 ~ 15:05"
                         return courseCell
                     }else{
                         var courseName = courseCell.viewWithTag(101) as! UILabel
@@ -236,7 +275,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                         var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[3].courseName
                         coursePlace.text = todayCourse[3].coursPlace
-                        courseTime.text = dateStr + "  第七、八节"
+//                        courseTime.text = dateStr + "  第七、八节"
+                    courseTime.text = "7~8节:  15:25 ~ 17:00"
                         return courseCell
                     }
                 }else if todayCourse[3].isTaken && todayCourse[4].isTaken{
@@ -246,7 +286,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                         var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[2].courseName
                         coursePlace.text = todayCourse[2].coursPlace
-                        courseTime.text = dateStr + "  第七、八节"
+//                        courseTime.text = dateStr + "  第七、八节"
+                    courseTime.text = "7~8节:  15:25 ~ 17:00"
                         return courseCell
                     }else{
                         var courseName = courseCell.viewWithTag(101) as! UILabel
@@ -254,7 +295,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                         var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[3].courseName
                         coursePlace.text = todayCourse[3].coursPlace
-                        courseTime.text = dateStr + "  第九十十一节"
+//                        courseTime.text = dateStr + "  第九十十一节"
+                    courseTime.text = "9~10节:  18:30 ~ 20:10"
                         return courseCell
                     }
                 }else{
@@ -264,7 +306,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                         var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[2].courseName
                         coursePlace.text = todayCourse[2].coursPlace
-                        courseTime.text = dateStr + "  第五、六节"
+//                        courseTime.text = dateStr + "  第五、六节"
+                    courseTime.text = "5~6节:  13:30 ~ 15:05"
                         return courseCell
                     }else{
                         var courseName = courseCell.viewWithTag(101) as! UILabel
@@ -272,7 +315,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                         var courseTime = courseCell.viewWithTag(103) as! UILabel
                         courseName.text = todayCourse[3].courseName
                         coursePlace.text = todayCourse[3].coursPlace
-                        courseTime.text = dateStr + "  第九十十一节"
+//                        courseTime.text = dateStr + "  第九十十一节"
+                    courseTime.text = "9~10节:  18:30 ~ 20:10"
                         return courseCell
                     }
                 }
@@ -284,7 +328,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[2].courseName
                     coursePlace.text = todayCourse[2].coursPlace
-                    courseTime.text = dateStr + "  第五、六节"
+//                    courseTime.text = dateStr + "  第五、六节"
+                    courseTime.text = "5~6节:  13:30 ~ 15:05"
                     return courseCell
                 }else if indexPath.row == amCourseNum + 3{
                     var courseName = courseCell.viewWithTag(101) as! UILabel
@@ -292,7 +337,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[3].courseName
                     coursePlace.text = todayCourse[3].coursPlace
-                    courseTime.text = dateStr + "  第七、八节"
+//                    courseTime.text = dateStr + "  第七、八节"
+                    courseTime.text = "7~8节:  15:25 ~ 17:00"                    
                     return courseCell
                 }else{
                     var courseName = courseCell.viewWithTag(101) as! UILabel
@@ -300,13 +346,18 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
                     var courseTime = courseCell.viewWithTag(103) as! UILabel
                     courseName.text = todayCourse[4].courseName
                     coursePlace.text = todayCourse[4].coursPlace
-                    courseTime.text = dateStr + "  第九十十一节"
+//                    courseTime.text = dateStr + "  第九十十一节"
+                    courseTime.text = "9~10节:  18:30 ~ 20:10"
                     return courseCell
                 }
             }
         }
     }
     @IBAction func showWholeWeekCourses(sender: UIBarButtonItem) {
+        var wholeWeekCourseView = self.storyboard?.instantiateViewControllerWithIdentifier("wholeWeekCourseViewController") as! WholeWeekCourseViewController
+        self.navigationController?.pushViewController(wholeWeekCourseView, animated: false)
+    }
+    @IBAction func showWholeWeekCourse(sender: UIButton) {
         var wholeWeekCourseView = self.storyboard?.instantiateViewControllerWithIdentifier("wholeWeekCourseViewController") as! WholeWeekCourseViewController
         self.navigationController?.pushViewController(wholeWeekCourseView, animated: false)
     }

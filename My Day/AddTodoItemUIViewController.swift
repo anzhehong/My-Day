@@ -65,6 +65,10 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
 
     }
 //
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newLength = count(textField.text.utf16) + count(string.utf16) - range.length
+        return newLength <= 25 // Bool
+    }
     
     //create action
 //    确定按钮操作

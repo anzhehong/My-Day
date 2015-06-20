@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateCourseViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class CreateCourseViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate , UITextFieldDelegate{
 
     var weeks = ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
     var classes = ["1--2", "3--4", "5--6", "7--8", "9--11"]
@@ -18,6 +18,8 @@ class CreateCourseViewController: UIViewController, UIPickerViewDataSource, UIPi
     @IBOutlet weak var coursePlace: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        courseName.delegate = self
+        coursePlace.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -69,4 +71,8 @@ class CreateCourseViewController: UIViewController, UIPickerViewDataSource, UIPi
     }
     
 
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newLength = count(textField.text.utf16) + count(string.utf16) - range.length
+        return newLength <= 11 // Bool
+    }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class LeftViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let titlesDictionary = ["日历", "天气", "课程表", "事务","记账"]
+    let titlesDictionary = ["日历", "天气", "课程表", "事务","记账", "2048"]
 
     @IBOutlet weak var settingTableView: UITableView!
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -35,6 +35,8 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController as! ViewController
+        
+//        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
         //选择某一功能之后显示页面
 //        viewController.homeViewController.titleOfOtherPages = titlesDictionary[indexPath.row]
 //        //具体选哪个
@@ -44,6 +46,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
             let subViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("CalendarHome") as! CalendarViewController
             println("Calendar")
             viewController.homeViewController.navigationController?.pushViewController(subViewController, animated: true)
+
         }else if indexPath.row == 1 {
             let subViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("WeatherHome") as! WeatherViewController
             println("Calendar")
@@ -64,6 +67,9 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         }else if indexPath.row == 4 {
             var alert = UIAlertView(title: "Bill", message: "没做呢", delegate: nil, cancelButtonTitle: "Cancel")
             alert.show()
+        }else if indexPath.row == 5 {
+            var gameViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("2048Game") as! GameViewController
+            viewController.homeViewController.navigationController?.pushViewController(gameViewController, animated: true)
         }
         //选择之后左边的弹回去
         viewController.showHome()

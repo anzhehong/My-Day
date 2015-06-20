@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddCourseViewController: UIViewController {
+class AddCourseViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var backgroundView: UIView!
     
@@ -23,6 +23,8 @@ class AddCourseViewController: UIViewController {
         super.viewDidLoad()
         courseName.text = course?.courseName
         coursePlace.text = course?.coursPlace
+        coursePlace.delegate = self
+        courseName.delegate = self
         let weekPos = currentIndexPath! % 7
         let classPos = currentIndexPath! / 7 + 1
         // Do any additional setup after loading the view.
@@ -101,5 +103,9 @@ class AddCourseViewController: UIViewController {
         default: classStr = "第n节"
         }
         return weekStr + "  " + classStr;
+    }
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newLength = count(textField.text.utf16) + count(string.utf16) - range.length
+        return newLength <= 12 // Bool
     }
 }

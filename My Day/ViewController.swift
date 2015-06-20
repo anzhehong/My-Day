@@ -24,6 +24,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     var centerOfLeftViewAtBeginning: CGPoint!
     var proportionOfLeftView: CGFloat = 1
     var distanceOfLeftView: CGFloat = 50
+    
+    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
@@ -174,6 +176,13 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
                 self.leftViewController.view.center = CGPointMake(self.centerOfLeftViewAtBeginning.x + self.distanceOfLeftView, self.leftViewController.view.center.y)
                 self.leftViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.proportionOfLeftView, self.proportionOfLeftView)
             }
+//            else if showWhat == "right" {
+//                var rightViewController = self.storyboard?.instantiateViewControllerWithIdentifier("gameTest") as! UIViewController
+//                self.leftViewController.view.center = CGPointMake(self.centerOfLeftViewAtBeginning.x + self.distanceOfLeftView, rightViewController.view.center.y)
+//                self.leftViewController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.proportionOfLeftView, self.proportionOfLeftView)
+//
+////                self.homeNavigationController?.pushViewController(rightViewController, animated: false)
+//            }
             self.blackCover.alpha = showWhat == "home" ? 1 : 0
             self.leftViewController.view.alpha = showWhat == "right" ? 0 : 1
             }, completion: nil)

@@ -31,7 +31,7 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "todoCell")
         tableView.separatorStyle = .None
         
-        tableView.backgroundColor = UIColor.blackColor()
+        tableView.backgroundColor = UIColor.whiteColor()
         //        tableView.rowHeight = 50.0
         self.userDefaultConfig()
         
@@ -47,7 +47,8 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         nav?.tintColor = UIColor.whiteColor()
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.brownColor()]
 //        nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
-        nav?.hidden = false
+        nav?.hidden = true
+
         
         self.tableView.reloadData()
     }
@@ -102,6 +103,8 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
 //        cell.backgroundColor = currentColor
         
         
+        
+        
         //get labels in the cell
 //        let todoTitle = cell.viewWithTag(101) as UILabel
 //        let todoType = cell.viewWithTag(102) as UILabel
@@ -115,6 +118,27 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         todoTitle.text = todoItem.title
         todoType.text = todoItem.type
         todoDate.text = todoItem.date
+        
+        if todoType.text?.componentsSeparatedByString("家").count > 1 || todoType.text?.componentsSeparatedByString("home").count > 1 {
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseGreen")!)
+            cell.typeImg.image = UIImage(named: "family")
+        }else if todoType.text?.componentsSeparatedByString("工作").count > 1 || todoType.text?.componentsSeparatedByString("work").count > 1 {
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseRed")!)
+            cell.typeImg.image = UIImage(named: "work")
+        }else if todoType.text?.componentsSeparatedByString("学").count > 1 || todoType.text?.componentsSeparatedByString("learn").count > 1{
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseGreendark")!)
+            cell.typeImg.image = UIImage(named: "study")
+        }else if todoType.text?.componentsSeparatedByString("娱").count > 1 || todoType.text?.componentsSeparatedByString("玩").count > 1 {
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseGreenYellow")!)
+            cell.typeImg.image = UIImage(named: "music")
+        }else if todoType.text?.componentsSeparatedByString("运动").count > 1 || todoType.text?.componentsSeparatedByString("exercise").count > 1 {
+            cell.backgroundColor = UIColor(patternImage: UIImage(named: "courseYellow")!)
+            cell.typeImg.image = UIImage(named: "exercise")
+        }else  {
+            cell.backgroundColor = UIColor.orangeColor()
+            cell.typeImg.image = UIImage(named: "exercise")
+        }
+        
         
         cell.delegate = self
         cell.toDoItem = item
@@ -187,15 +211,15 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     //MARK - UITableViewDelegate
-    func colorForIndex(index: Int) -> UIColor {
-        let itemCount = todoList.count - 1
-        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
-        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
-    }
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-        forRowAtIndexPath indexPath: NSIndexPath) {
-            cell.backgroundColor = colorForIndex(indexPath.row)
-    }
+//    func colorForIndex(index: Int) -> UIColor {
+//        let itemCount = todoList.count - 1
+//        let val = (CGFloat(index) / CGFloat(itemCount)) * 0.6
+//        return UIColor(red: 1.0, green: val, blue: 0.0, alpha: 1.0)
+//    }
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+//        forRowAtIndexPath indexPath: NSIndexPath) {
+//            cell.backgroundColor = colorForIndex(indexPath.row)
+//    }
     
     //    左滑动删除
     //MARK - UITableViewDelegate

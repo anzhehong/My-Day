@@ -3,7 +3,7 @@
 //  My Day
 //
 //  Created by FOWAFOLO on 15/6/14.
-//  Copyright (c) 2015年 Fowafolo. All rights reserved.
+//  Copyright (c) 2015 Fowafolo. All rights reserved.
 //
 
 import UIKit
@@ -21,6 +21,8 @@ class TableViewCell: UITableViewCell {
     var lll1 = UILabel()
     var lll2 = UILabel()
     var lll3 = UILabel()
+    
+    var typeImg = UIImageView()
     
     var originalCenter = CGPoint()
     var deleteOnDragRelease = false, completeOnDragRelease = false
@@ -61,12 +63,15 @@ class TableViewCell: UITableViewCell {
         
         
         label.textColor = UIColor.whiteColor()
-        label.font = UIFont.boldSystemFontOfSize(18)
+        label.font = UIFont.boldSystemFontOfSize(22)
         label.backgroundColor = UIColor.clearColor()
         
         label2.textColor = UIColor.whiteColor()
-        label2.font = UIFont.boldSystemFontOfSize(18)
+        label2.font = UIFont.boldSystemFontOfSize(16)
         label2.backgroundColor = UIColor.clearColor()
+        
+        label2.textAlignment = NSTextAlignment.Right
+        
         label3.textColor = UIColor.whiteColor()
         label3.font = UIFont.boldSystemFontOfSize(18)
         label3.backgroundColor = UIColor.clearColor()
@@ -77,6 +82,11 @@ class TableViewCell: UITableViewCell {
         addSubview(label)
         addSubview(label2)
         addSubview(label3)
+
+//        typeImg.image = UIImage(named: "exercise")
+//        typeImg.backgroundColor = UIColor(patternImage: UIImage(named: "exercise")!)
+//        typeImg.backgroundColor = UIColor.blueColor()
+        addSubview(typeImg)
         // remove the default blue highlight for selected cells
         selectionStyle = .None
         
@@ -97,8 +107,10 @@ class TableViewCell: UITableViewCell {
         
         // add a layer that renders a green background when an item is complete
         itemCompleteLayer = CALayer(layer: layer)
-        itemCompleteLayer.backgroundColor = UIColor(red: 0.0, green: 0.6, blue: 0.0,
+        itemCompleteLayer.backgroundColor = UIColor(red: 0.5, green: 0.0, blue: 0.0,
             alpha: 1.0).CGColor
+//        itemCompleteLayer.backgroundColor = UIColor.grayColor().CGColor
+        itemCompleteLayer.backgroundColor = UIColor(red: 210/255, green: 210/255, blue: 210/255, alpha: 0.99).CGColor
         itemCompleteLayer.hidden = true
         layer.insertSublayer(itemCompleteLayer, atIndex: 0)
 
@@ -110,11 +122,15 @@ class TableViewCell: UITableViewCell {
         // ensure the gradient layer occupies the full bounds
         gradientLayer.frame = bounds
         itemCompleteLayer.frame = bounds
-        label.frame = CGRect(x: kLabelLeftMargin, y: 0,
+        label.frame = CGRect(x: kLabelLeftMargin, y: 10,
             width: bounds.size.width - kLabelLeftMargin,
             height: bounds.size.height/3)
-        label2.frame = CGRect(x: kLabelLeftMargin, y: bounds.size.height/3, width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height/3)
+//        label2.frame = CGRect(x: kLabelLeftMargin, y: bounds.size.height/3, width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height*2/3)
+        label2.frame = CGRect(x: bounds.size.width-50-123, y: bounds.size.height-50, width: 120, height: bounds.height/3)
+
         label3.frame = CGRect(x: kLabelLeftMargin, y: bounds.size.height*2/3, width: bounds.size.width - kLabelLeftMargin, height: bounds.size.height/3)
+    
+        typeImg.frame = CGRect(x: bounds.size.width - 50, y: bounds.size.height-60, width: 50, height: 50)
     }
     
     //MARK: - horizontal pan gesture methods
@@ -129,8 +145,8 @@ class TableViewCell: UITableViewCell {
             let translation = recognizer.translationInView(self)
             center = CGPointMake(originalCenter.x + translation.x, originalCenter.y)
             // has the user dragged the item far enough to initiate a delete/complete?
-            deleteOnDragRelease = frame.origin.x < -frame.size.width / 2.0
-            completeOnDragRelease = frame.origin.x > frame.size.width / 2.0
+            deleteOnDragRelease = frame.origin.x < -frame.size.width / 3.0
+            completeOnDragRelease = frame.origin.x > frame.size.width / 3.0
         }
         // 3
         if recognizer.state == .Ended {

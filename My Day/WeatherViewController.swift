@@ -57,7 +57,7 @@ class WeatherViewController: UIViewController {
         }else if weather.componentsSeparatedByString("雪").count > 1 {
             imgView.image = UIImage(named: "snow")
         }else if weather.componentsSeparatedByString("云").count > 1 {
-            imgView.image = UIImage(named: "fog")
+            imgView.image = UIImage(named: "cloudy")
         }
         else {
             imgView.image = UIImage(named: "wind")
@@ -99,12 +99,15 @@ class WeatherViewController: UIViewController {
             var dayTodayFormatter = NSDateFormatter()
             dayTodayFormatter.dateFormat = "MM月dd日"
             var dayTodayStr = dayTodayFormatter.stringFromDate(dayToday)
-            currentDayAndWeekLabel.text = "\(dayTodayStr) \(weekCurr)"
+//            currentDayAndWeekLabel.text = "\(dayTodayStr) \(weekCurr)"
+            currentDayAndWeekLabel.text = weatherToday as? String
             todayTemperatureLabel.text = "\(todayTemperature)"
             windAndWinpLabel.text = "\(wind) \(winp)"
             //            todayWeather.text = weatherToday as? String
             self.weatherImgConfig(weatherImgView, weather: weatherToday as! String)
             self.backgroundImgConfig(weatherToday as! String)
+            
+//            self.backgroudImg.image = UIImage(named: "sunnyDay")
             
     }
     
@@ -121,13 +124,13 @@ class WeatherViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.todayWeatherImage.hidden = true
         var nav = self.navigationController?.navigationBar
         nav?.setBackgroundImage(backgroudImg.image, forBarMetrics: UIBarMetrics.Default)
         nav?.barStyle = UIBarStyle.Default
         nav?.tintColor = UIColor.whiteColor()
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        nav?.hidden = false
+        nav?.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -219,7 +222,7 @@ class WeatherViewController: UIViewController {
         //风力
         var winp1: AnyObject! = result[1].objectForKey("winp")
         var weather1: AnyObject! = result[1].objectForKey("weather")
-        
+        println(weather1)
         
         //第二天
         
@@ -242,6 +245,7 @@ class WeatherViewController: UIViewController {
         //风力
         var winp2: AnyObject! = result[2].objectForKey("winp")
         var weather2: AnyObject! = result[2].objectForKey("weather")
+        println(weather2)
     
         
         //第三天
@@ -265,15 +269,21 @@ class WeatherViewController: UIViewController {
         //风力
         var winp3: AnyObject! = result[3].objectForKey("winp")
         var weather3: AnyObject! = result[3].objectForKey("weather")
-        
+        println(weather3)
         
         changeFuture3Weather(week1, week2: week2, week3: week3, temp1: temperature1, temp2: temperature2, temp3: temperature3, weather1:weather1 , weather2: weather2, weather3: weather3, imgView1: tomorrowWeatherImg, imgView2: tomorrow2WeatherImg, imgView3: tomorrow3WeatherImg)
     }
     
-    @IBAction func shareWeather(sender: UIBarButtonItem) {
+//    @IBAction func shareWeather(sender: UIBarButtonItem) {
+//        
+//    }
+    @IBAction func shareWeather(sender: UIButton) {
         var shareAlert = UIAlertView(title: "分享天气", message: "已成功分享给爷爷奶奶姥姥姥爷爸爸妈妈叔叔婶婶姨姨舅舅姑姑姑父（本功能有待开发☺️）", delegate: self, cancelButtonTitle: "好的")
         shareAlert.show()
     }
     
+    @IBAction func backButton(sender: UIButton) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
 
 }
