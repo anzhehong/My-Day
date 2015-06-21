@@ -131,4 +131,6 @@ class AddCourseViewController: UIViewController, UITextFieldDelegate {
         let newLength = count(textField.text.utf16) + count(string.utf16) - range.length
         return newLength <= 12 // Bool
     }
+    
+    
 }

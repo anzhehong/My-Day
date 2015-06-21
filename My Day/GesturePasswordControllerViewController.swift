@@ -106,7 +106,8 @@ class GesturePasswordControllerViewController: UIViewController,VerificationDele
             
             
             var rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
-            presentViewController(rootViewController, animated: true, completion: nil)
+//            presentViewController(rootViewController, animated: true, completion: nil)
+            self.navigationController?.popToRootViewControllerAnimated(true)
             
             return true
         }

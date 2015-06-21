@@ -94,6 +94,12 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    @IBAction func showGestureViewController(sender: AnyObject) {
+        let viewController = UIApplication.sharedApplication().keyWindow?.rootViewController as! ViewController
+        var ges = self.storyboard?.instantiateViewControllerWithIdentifier("ges") as! GesturePasswordControllerViewController
+        viewController.homeViewController.navigationController?.pushViewController(ges, animated: true)
+        viewController.showHome()
+    }
     
 
 }

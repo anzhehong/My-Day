@@ -14,6 +14,7 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var itemType: UITextField!
     @IBOutlet weak var itemDate: UIDatePicker!
     
+    @IBOutlet weak var addTodoImgView: UIImageView!
 //    不为空是编辑，为空是新增
     var currentTodoItem: TodoModel?
     var currentIndex: Int?
@@ -38,6 +39,7 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
             itemType.text = currentTodoItem?.type
             itemDate.date = date!
         }
+        addTodoImgView.image = UIImage(named: "AddTodoBack")
         
     }
 
@@ -129,11 +131,10 @@ class AddTodoItemUIViewController: UIViewController, UITextFieldDelegate {
                 currentDefault.setObject(todoList, forKey: "Todo")
             }
         }
-        
-        
-        
-        
     }
 
+    @IBAction func addTodoHomeButton(sender: UIButton) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
 
 }

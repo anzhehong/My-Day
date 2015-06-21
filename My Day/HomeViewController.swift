@@ -12,10 +12,12 @@ class HomeViewController: UIViewController {
     
     var titleOfOtherPages = ""
 
+    @IBOutlet weak var homeViewImgView: UIImageView!
     @IBOutlet var panGesture: UIPanGestureRecognizer!
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     override func viewDidLoad() {
         super.viewDidLoad()
+        homeViewImgView.image = UIImage(named: "bill1")
 
         // 设置中间 segmentView 视图
 //        let segmentView = UISegmentedControl(items: ["消息", "电话"])
