@@ -29,7 +29,6 @@ class TodoModel: NSObject, NSCoding {
         self.type = aDecoder.decodeObjectForKey("type") as? String
         self.date = aDecoder.decodeObjectForKey("date") as? String
         self.completed = aDecoder.decodeObjectForKey("flag") as? Bool
-
     }
     
     //在这个方法里指定如何归档对象中的每个实例变量，可以使用encodeObject:forKey方法归档实例变量

@@ -105,7 +105,7 @@ class GesturePasswordControllerViewController: UIViewController,VerificationDele
             gesturePasswordView.state!.text = "输入正确"
             
             
-            var rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+//            var rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
 //            presentViewController(rootViewController, animated: true, completion: nil)
             self.navigationController?.popToRootViewControllerAnimated(true)
             
@@ -136,8 +136,9 @@ class GesturePasswordControllerViewController: UIViewController,VerificationDele
                 gesturePasswordView.state!.textColor = UIColor(red: 2/255, green: 174/255, blue: 240/255, alpha: 1)
                 gesturePasswordView.state!.text = "已保存手势密码"
                 
-                var rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
-                presentViewController(rootViewController, animated: true, completion: nil)
+//                var rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+//                presentViewController(rootViewController, animated: true, completion: nil)
+                self.navigationController?.popToRootViewControllerAnimated(true)
             
                 return true;
             }else{

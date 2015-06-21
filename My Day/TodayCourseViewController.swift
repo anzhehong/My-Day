@@ -12,6 +12,7 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
 
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var todayWeekLabel: UILabel!
     
     var todayCourse = [CourseInfoModel]()
     var amCourseNum = 0;
@@ -30,6 +31,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
 //        backImg.alpha = 0.3
 //        self.view.addSubview(backImg)
 //        todayCourse = [CourseInfoModel]()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 70
         
         tableView.reloadData()
         
@@ -112,7 +115,6 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
 //        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
         
         
-        
     }
     
     
@@ -122,6 +124,8 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
 //        return todayCourse.count
     }
     
+    
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         return self.loadData(tableView, cellForRowAtIndexPath: indexPath)
@@ -130,14 +134,25 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
     
 //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 //        
-//        if indexPath.row == 0 {
-//            return 40
-//        }
+////        if indexPath.row == 0 {
+////            return 40
+////        }
 ////        else if indexPath.row == 1 {
 ////            
 ////        }
-//        return 100
+////        return 100
+//        var cell = self.tableView.cellForRowAtIndexPath(indexPath)!
+//        println(cell.frame.size.height)
+//
+//        return 55
+//        
 //    }
+
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if (IS_IOS8_OR_ABOVE) {
+            return UITableViewAutomaticDimension;
+//        }
+    }
 
     
     
@@ -171,6 +186,7 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         case 6: dateStr = "星期六"
         default: dateStr = "星期八"
         }
+        todayWeekLabel.text = dateStr
 //        timeCell.frame.size.height = 10
 //        timeCell.hidden = true
 //        noCourseCell.hidden = true

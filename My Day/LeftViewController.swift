@@ -65,7 +65,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
             viewController.homeViewController.navigationController?.pushViewController(subViewController, animated: true)
 
         }else if indexPath.row == 4 {
-            var alert = UIAlertView(title: "Bill", message: "没做呢", delegate: nil, cancelButtonTitle: "Cancel")
+            var alert = UIAlertView(title: "还没做", message: "敬请期待", delegate: nil, cancelButtonTitle: "好的呀☺️")
             alert.show()
         }else if indexPath.row == 5 {
             var gameViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("2048Game") as! GameViewController

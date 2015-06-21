@@ -160,6 +160,9 @@ class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSourc
         return 2
     }
     
+    @IBAction func showTodayButton(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
     //goback from subViews
     @IBAction func close(segue: UIStoryboardSegue){
