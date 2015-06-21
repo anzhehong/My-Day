@@ -141,8 +141,16 @@ class WeatherViewController: UIViewController {
     
     func loadTodayWeather(){
         //今日天气
+        var todayError = NSErrorPointer()
         var urlToday = NSURL(string: "http://api.k780.com:88/?app=weather.today&weaid=38&&appkey=14248&sign=8f3a3981badca2bc2c0a8193f259f916&format=json")
-        var dataToday = NSData(contentsOfURL: urlToday!, options: NSDataReadingOptions.DataReadingUncached, error: nil)
+        var dataToday = NSData(contentsOfURL: urlToday!, options: NSDataReadingOptions.DataReadingUncached, error: todayError)
+        if  todayError != nil {
+            UIAlertView(title: "错误", message: "网络请求出错，请检查╮(╯_╰)╭", delegate: self, cancelButtonTitle: "取消").show()
+            println("网络请求错误，请检查网络连接")
+        }
+        
+        
+        
         var jsonToday: AnyObject! = NSJSONSerialization.JSONObjectWithData(dataToday!, options: NSJSONReadingOptions.AllowFragments, error: nil)
         var resultToday: AnyObject! = jsonToday.objectForKey("result")
         

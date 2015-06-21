@@ -16,6 +16,7 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var todoUIBackImgView: UIImageView!
     
     
     //MARK - ViewControllerLife
@@ -23,7 +24,7 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
+        todoUIBackImgView.image = UIImage(named: "todoBack")
         
         //        ////
         //        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "todoCell")
@@ -31,7 +32,7 @@ class TodoUIViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.registerClass(TableViewCell.self, forCellReuseIdentifier: "todoCell")
         tableView.separatorStyle = .None
         
-        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.backgroundColor = UIColor.clearColor()
         //        tableView.rowHeight = 50.0
         self.userDefaultConfig()
         

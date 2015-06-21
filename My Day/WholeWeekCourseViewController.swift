@@ -16,14 +16,17 @@ class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSourc
     @IBOutlet weak var courseCollectionView: UICollectionView!
     
     @IBOutlet weak var courseBackView: UIView!
+    @IBOutlet weak var wholeWeekBackImgView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        courseCollectionView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
-        courseBackView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
-
+//        courseCollectionView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+        courseCollectionView.backgroundColor = UIColor.clearColor()
+//        courseBackView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+        courseBackView.backgroundColor = UIColor.clearColor()
+        wholeWeekBackImgView.image = UIImage(named: "todayCourse")
         
 //        courseCollectionView.alpha = 1
 //        courseCollectionView.alpha = 0.3
@@ -64,7 +67,7 @@ class WholeWeekCourseViewController: UIViewController, UICollectionViewDataSourc
         nav?.tintColor = UIColor.whiteColor()
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.brownColor()]
         nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
-        nav?.hidden = false
+        nav?.hidden = true
     }
 
     

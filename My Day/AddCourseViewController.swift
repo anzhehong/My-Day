@@ -12,6 +12,7 @@ class AddCourseViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var backgroundView: UIView!
     
+    @IBOutlet weak var backgroundImg: UIImageView!
 
     @IBOutlet weak var courseName: UITextField!
     @IBOutlet weak var courseTime: UITextField!
@@ -25,10 +26,15 @@ class AddCourseViewController: UIViewController, UITextFieldDelegate {
         coursePlace.text = course?.coursPlace
         coursePlace.delegate = self
         courseName.delegate = self
+        
         let weekPos = currentIndexPath! % 7
         let classPos = currentIndexPath! / 7 + 1
         // Do any additional setup after loading the view.
         courseTime.text = getCourseTime(weekPos, classPos: classPos)
+        backgroundImg.image = UIImage(named: "todayCourse")
+        
+
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -39,9 +45,16 @@ class AddCourseViewController: UIViewController, UITextFieldDelegate {
         nav?.tintColor = UIColor.whiteColor()
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.brownColor()]
         nav?.setBackgroundImage(UIImage(named: "courseBackground"), forBarMetrics: UIBarMetrics.Default)
-        nav?.hidden = false
+        nav?.hidden = true
 
-        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "courseBackground")!)
+        if course?.courseName != "" {
+            courseName.placeholder = ""
+            println(courseName.placeholder)
+        }
+        if course?.coursPlace != "" {
+            coursePlace.placeholder = ""
+        }
+//        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "todayCourse")!)
     
     }
     
@@ -57,9 +70,16 @@ class AddCourseViewController: UIViewController, UITextFieldDelegate {
         var myCourse = CourseInfoModel()
         myCourse.coursPlace = coursePlace.text
         myCourse.courseName = courseName.text
-        if courseName.text != "" || coursePlace.text != "" {
+        if courseName.text != "" && coursePlace.text != "" {
             myCourse.isTaken = true
-        }else{
+        }else if courseName.text != "" && coursePlace.text == "" {
+            myCourse.isTaken = false
+            UIAlertView(title: "错误", message: "请填写课程地点", delegate: self, cancelButtonTitle: "确认").show()
+        }else if courseName.text == "" && coursePlace.text != "" {
+            myCourse.isTaken = false
+            UIAlertView(title: "错误", message: "请填写课程地点", delegate: self, cancelButtonTitle: "确认").show()
+        }
+        else{
             myCourse.isTaken = false
         }
         
@@ -78,6 +98,9 @@ class AddCourseViewController: UIViewController, UITextFieldDelegate {
         okDidClicked(UIButton())
     }
     
+    @IBAction func addCourseHomeButton(sender: UIButton) {
+        self.navigationController?.popToRootViewControllerAnimated(true)
+    }
     
     
     func getCourseTime(weekPos:Int, classPos: Int) ->String{

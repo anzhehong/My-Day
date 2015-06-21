@@ -16,13 +16,20 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
     var todayCourse = [CourseInfoModel]()
     var amCourseNum = 0;
     var pmCourseNum = 0;
+    
+    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        todayCourse = [CourseInfoModel]()
+        tableView.backgroundColor = UIColor.clearColor()
+//        var backImg = UIImageView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+//        backImg.image = UIImage(named: "todayCourse")
+//        backImg.alpha = 0.3
+//        self.view.addSubview(backImg)
+//        todayCourse = [CourseInfoModel]()
         
         tableView.reloadData()
         
@@ -89,7 +96,9 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+                todayCourse = [CourseInfoModel]()
         self.loadData()
+
         
         var nav = self.navigationController?.navigationBar
 
@@ -105,18 +114,12 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         
         
     }
-
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return amCourseNum + pmCourseNum + 2
+        return amCourseNum + pmCourseNum + 2
 //        println(todayCourse.count)
-        return todayCourse.count
+//        return todayCourse.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -125,15 +128,28 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
-//        return 50
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        
+//        if indexPath.row == 0 {
+//            return 40
+//        }
+////        else if indexPath.row == 1 {
+////            
+////        }
+//        return 100
 //    }
+
+    
     
     func loadData(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) ->UITableViewCell
     {
         let timeCell = tableView.dequeueReusableCellWithIdentifier("TimeCell") as! UITableViewCell
         let courseCell = tableView.dequeueReusableCellWithIdentifier("CourseCell") as! UITableViewCell
         let noCourseCell = tableView.dequeueReusableCellWithIdentifier("NoCourseCell") as! UITableViewCell
+
+        timeCell.backgroundColor = UIColor.clearColor()
+        courseCell.backgroundColor = UIColor.clearColor()
+        noCourseCell.backgroundColor = UIColor.clearColor()
         
 //        println(courseCell)
         
@@ -162,16 +178,25 @@ class TodayCourseViewController: UIViewController, UITableViewDataSource, UITabl
 //        noCourseCell.frame.size.height = 10
         
 
-        var courseCellBackground = UIImageView(frame: CGRect(x: courseCell.frame.origin.x+20, y: courseCell.frame.origin.y+5, width: courseCell.frame.size.width-20, height: courseCell.frame.size.height-10))
-        courseCellBackground.backgroundColor = UIColor.orangeColor()
-        courseCellBackground.layer.cornerRadius = 10
-        courseCellBackground.alpha = 0.3
-        courseCell.addSubview(courseCellBackground)
+//        var courseCellBackground = UIImageView(frame: CGRect(x: courseCell.frame.origin.x+20, y: courseCell.frame.origin.y+5, width: courseCell.frame.size.width-20, height: courseCell.frame.size.height-10))
+//        courseCellBackground.backgroundColor = UIColor.orangeColor()
+//        courseCellBackground.layer.cornerRadius = 10
+//        courseCellBackground.alpha = 0.3
+//        courseCell.addSubview(courseCellBackground)
+        
+        var courseCellBackgroundView = courseCell.viewWithTag(104) as! UIImageView
+//        courseCellBackgroundView.backgroundColor = UIColor.grayColor()
+        courseCellBackgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "淡蓝")!)
+        courseCellBackgroundView.layer.cornerRadius = 10
+        courseCellBackgroundView.alpha = 0.8
+
 
         
         if indexPath.row == 0 {
             var label = timeCell.viewWithTag(101) as! UILabel
             label.text = "上午"
+
+
             return timeCell
         }else if indexPath.row <= amCourseNum && indexPath.row > 0 {
             if amCourseNum == 1{
