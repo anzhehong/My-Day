@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIconFile</key>
+	<string>MyDayIcon.png</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>MyDayIcon.png</string>
+		<string>MyDayIcon@2x.png</string>
+		<string>MyDayIcon-72.png</string>
+		<string>MyDayIcon-72@2x.png</string>
+		<string>MyDayIcon-Small-50.png</string>
+		<string>MyDayIcon-Small-50@2x.png</string>
+		<string>MyDayIcon-Small.png</string>
+		<string>MyDayIcon-Small@2x.png</string>
+	</array>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
