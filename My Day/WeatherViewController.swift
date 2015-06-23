@@ -65,6 +65,8 @@ class WeatherViewController: UIViewController {
     }
     
     func backgroundImgConfig(weather:String) {
+println("今儿")
+        println(weather)
         if weather == "晴" {
             backgroudImg.image = UIImage(named: "sunnyDay")
         }else if weather == "晴转多云" {
